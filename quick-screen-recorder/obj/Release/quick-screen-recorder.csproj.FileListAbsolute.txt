@@ -1,0 +1,14 @@
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\quick-screen-recorder.exe.config
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\quick-screen-recorder.exe
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\quick-screen-recorder.pdb
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\SharpAvi.dll
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\SharpAvi.xml
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.csprojAssemblyReference.cache
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AboutBox1.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AreaForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.MainForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.Properties.Resources.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.csproj.GenerateResource.cache
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.csproj.CopyComplete
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.exe
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.pdb
