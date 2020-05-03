@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,24 +8,10 @@ namespace quick_screen_recorder
 {
 	public partial class MainForm : Form
 	{
-		private Recorder rec;
 		private AreaForm areaForm;
-		private DateTime startTime;
+		private StopForm stopForm;
 
-		private enum KeyModifier
-		{
-			None = 0,
-			Alt = 1,
-			Control = 2,
-			Shift = 4,
-			WinKey = 8
-		}
-
-		[System.Runtime.InteropServices.DllImport("user32.dll")]
-		public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
-
-		[System.Runtime.InteropServices.DllImport("user32.dll")]
-		public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+		private Recorder newRecorder = null;
 
 		public MainForm()
 		{
@@ -35,9 +22,14 @@ namespace quick_screen_recorder
 
 			folderTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-			fpsComboBox.SelectedIndex = 0;
 			qualityComboBox.SelectedIndex = 2;
 			areaComboBox.SelectedIndex = 0;
+			inputDeviceComboBox.SelectedIndex = 0;
+
+			for (int i = 0; i < WaveIn.DeviceCount; i++)
+			{
+				inputDeviceComboBox.Items.Add(WaveIn.GetCapabilities(i).ProductName);
+			}
 		}
 
 		public void SetAreaWidth(int w)
@@ -80,83 +72,72 @@ namespace quick_screen_recorder
 
 		private void recButton_Click(object sender, EventArgs e)
 		{
-			ToggleRec();
+			StartRec();
 		}
 
-		private void ToggleRec()
+		public void StopRec()
 		{
-			if (rec == null)
+			try
 			{
-				try
-				{
-					string folder = folderTextBox.Text;
-					string fileName = fileNameTextBox.Text;
-					int fps = Convert.ToInt32(fpsComboBox.Text);
-					int quality = Convert.ToInt32(string.Concat(qualityComboBox.Text.Where(char.IsDigit)));
-
-					int x = 0;
-					int y = 0;
-					int width = 0;
-					int height = 0;
-					if (areaComboBox.SelectedIndex == 1)
-					{
-						x = areaForm.Location.X + 1;
-						y = areaForm.Location.Y + 1;
-						width = (int)widthNumeric.Value;
-						height = (int)heightNumeric.Value;
-					}
-					else
-					{
-						x = 0;
-						y = 0;
-						width = Screen.PrimaryScreen.Bounds.Width;
-						height = Screen.PrimaryScreen.Bounds.Height;
-					}
-
-					rec = new Recorder(new RecorderParams(
-						folder + "/" + fileName + ".avi",
-						fps,
-						SharpAvi.KnownFourCCs.Codecs.MotionJpeg,
-						quality,
-						x,
-						y,
-						width,
-						height
-					));
-
-					mainTimer.Start();
-
-					areaForm.Hide();
-
-					startTime = DateTime.Now;
-
-					recButton.Text = "STOP";
-					recButton.Image = Properties.Resources.stop;
-
-					this.Text = "⦿ Recording - Quick Screen Recorder";
-				}
-				catch
-				{
-					MessageBox.Show("Something went wrong!", "Error");
-				}
-			}
-			else
-			{
-				rec.Dispose();
-
-				mainTimer.Stop();
+				HotkeyManager.RegisterHotKey(this.Handle, 0, (int)HotkeyManager.KeyModifier.Alt, Keys.R.GetHashCode());
 
 				if (areaComboBox.SelectedIndex == 1)
 				{
 					areaForm.Show();
 				}
 
-				recButton.Text = "REC";
-				recButton.Image = Properties.Resources.rec;
+				newRecorder.Dispose();
+				newRecorder = null;
+			}
+			catch
+			{
+				MessageBox.Show("Something went wrong!", "Error");
+			}
+		}
 
-				this.Text = "Quick Screen Recorder";
+		private void StartRec()
+		{
+			try
+			{
+				string folder = folderTextBox.Text;
+				string fileName = fileNameTextBox.Text;
+				int quality = Convert.ToInt32(string.Concat(qualityComboBox.Text.Where(char.IsDigit)));
+				int inputSourceIndex = inputDeviceComboBox.SelectedIndex - 2;
 
-				rec = null;
+				int x = 0;
+				int y = 0;
+				int width = 0;
+				int height = 0;
+
+				if (areaComboBox.SelectedIndex == 1)
+				{
+					x = areaForm.Location.X + 1;
+					y = areaForm.Location.Y + 1;
+					width = (int)widthNumeric.Value;
+					height = (int)heightNumeric.Value;
+				}
+				else
+				{
+					x = 0;
+					y = 0;
+					width = Screen.PrimaryScreen.Bounds.Width;
+					height = Screen.PrimaryScreen.Bounds.Height;
+				}
+
+				newRecorder = new Recorder(folder + "/" + fileName + ".avi", quality, x, y, width, height, captureCursorCheckBox.Checked, inputSourceIndex);
+
+				areaForm.Hide();
+				this.Hide();
+
+				HotkeyManager.UnregisterHotKey(this.Handle, 0);
+
+				stopForm = new StopForm(DateTime.Now);
+				stopForm.Owner = this;
+				stopForm.Show();
+			}
+			catch
+			{
+				MessageBox.Show("Something went wrong!", "Error");
 			}
 		}
 
@@ -217,16 +198,9 @@ namespace quick_screen_recorder
 			}
 		}
 
-		private void mainTimer_Tick(object sender, EventArgs e)
-		{
-			DateTime tickTime = DateTime.Now;
-			TimeSpan result = tickTime - startTime;
-			timeLabel.Text = string.Format("{0:D2}:{1:D2}.{2:D3}", result.Minutes, result.Seconds, result.Milliseconds);
-		}
-
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			RegisterHotKey(this.Handle, 0, (int)KeyModifier.Alt, Keys.R.GetHashCode());
+			HotkeyManager.RegisterHotKey(this.Handle, 0, (int)HotkeyManager.KeyModifier.Alt, Keys.R.GetHashCode());
 		}
 
 		protected override void WndProc(ref Message m)
@@ -236,13 +210,13 @@ namespace quick_screen_recorder
 			if (m.Msg == 0x0312)
 			{
 				Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
-				KeyModifier modifier = (KeyModifier)((int)m.LParam & 0xFFFF);
+				HotkeyManager.KeyModifier modifier = (HotkeyManager.KeyModifier)((int)m.LParam & 0xFFFF);
 
-				if (modifier == KeyModifier.Alt)
+				if (modifier == HotkeyManager.KeyModifier.Alt)
 				{
 					if (key == Keys.R)
 					{
-						ToggleRec();
+						StartRec();
 					}
 				}
 			}
@@ -250,7 +224,7 @@ namespace quick_screen_recorder
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			UnregisterHotKey(this.Handle, 0);
+			HotkeyManager.UnregisterHotKey(this.Handle, 0);
 		}
 	}
 }

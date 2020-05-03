@@ -12,3 +12,6 @@ D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.csproj.CopyComplete
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.exe
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.pdb
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\NAudio.dll
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\NAudio.xml
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.StopForm.resources
