@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>rec.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
@@ -81,6 +84,7 @@
     <Compile Include="StopForm.Designer.cs">
       <DependentUpon>StopForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThemeManager.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,6 +126,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\imgs\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="rec.ico" />
+    <None Include="resources\imgs\light\white-stop.png" />
+    <None Include="resources\imgs\light\white-record.png" />
+    <None Include="resources\imgs\light\white-about.png" />
+    <None Include="resources\white-stop.png" />
+    <None Include="resources\white-record.png" />
+    <None Include="resources\white-about.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

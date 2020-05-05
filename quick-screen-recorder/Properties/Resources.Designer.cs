@@ -63,9 +63,9 @@ namespace quick_screen_recorder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rec {
+        internal static System.Drawing.Bitmap white_about {
             get {
-                object obj = ResourceManager.GetObject("rec", resourceCulture);
+                object obj = ResourceManager.GetObject("white_about", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace quick_screen_recorder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap stop {
+        internal static System.Drawing.Bitmap white_record {
             get {
-                object obj = ResourceManager.GetObject("stop", resourceCulture);
+                object obj = ResourceManager.GetObject("white_record", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_stop {
+            get {
+                object obj = ResourceManager.GetObject("white_stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

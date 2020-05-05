@@ -1,6 +1,8 @@
-﻿using NAudio.Wave;
+﻿using NAudio.CoreAudioApi;
+using NAudio.Wave;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,10 +13,21 @@ namespace quick_screen_recorder
 		private AreaForm areaForm;
 		private StopForm stopForm;
 
-		private Recorder newRecorder = null;
+		private Recorder recorder = null;
 
-		public MainForm()
+		private bool darkMode;
+
+		//private MMDeviceEnumerator deviceEnum = new MMDeviceEnumerator();
+
+		public MainForm(bool darkMode)
 		{
+			if (darkMode)
+			{
+				this.HandleCreated += new EventHandler(ThemeManager.formHandleCreated);
+			}
+
+			this.darkMode = darkMode;
+
 			InitializeComponent();
 
 			areaForm = new AreaForm();
@@ -26,10 +39,42 @@ namespace quick_screen_recorder
 			areaComboBox.SelectedIndex = 0;
 			inputDeviceComboBox.SelectedIndex = 0;
 
+			//var devices = deviceEnum.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
+			//inputDeviceComboBox.Items.AddRange(devices.ToArray());
+
 			for (int i = 0; i < WaveIn.DeviceCount; i++)
 			{
 				inputDeviceComboBox.Items.Add(WaveIn.GetCapabilities(i).ProductName);
 			}
+
+			if (darkMode)
+			{
+				applyDarkTheme();
+			}
+		}
+
+		private void applyDarkTheme()
+		{
+			this.ForeColor = Color.White;
+			this.BackColor = ThemeManager.BackColorDark;
+
+			recButton.BackColor = ThemeManager.SecondColorDark;
+			recButton.Image = Properties.Resources.white_record;
+
+			browseFolderBtn.BackColor = ThemeManager.SecondColorDark;
+
+			aboutBtn.BackColor = ThemeManager.SecondColorDark;
+			aboutBtn.Image = Properties.Resources.white_about;
+
+			fileNameTextBox.BackColor = ThemeManager.SecondColorDark;
+			fileNameTextBox.ForeColor = Color.White;
+
+			folderTextBox.BackColor = ThemeManager.SecondColorDark;
+			folderTextBox.ForeColor = Color.White;
+
+			generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
+			videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
+			audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
 		}
 
 		public void SetAreaWidth(int w)
@@ -86,8 +131,9 @@ namespace quick_screen_recorder
 					areaForm.Show();
 				}
 
-				newRecorder.Dispose();
-				newRecorder = null;
+				recorder.Dispose();
+				recorder.OnPeakVolumeChanged -= Recorder_OnPeakVolumeChanged;
+				recorder = null;
 			}
 			catch
 			{
@@ -124,20 +170,40 @@ namespace quick_screen_recorder
 					height = Screen.PrimaryScreen.Bounds.Height;
 				}
 
-				newRecorder = new Recorder(folder + "/" + fileName + ".avi", quality, x, y, width, height, captureCursorCheckBox.Checked, inputSourceIndex);
+				recorder = new Recorder(folder + "/" + fileName + ".avi", 
+					quality, x, y, width, height, captureCursorCheckBox.Checked, 
+					inputSourceIndex, separateAudioCheckBox.Checked);
+				recorder.OnPeakVolumeChanged += Recorder_OnPeakVolumeChanged;
 
 				areaForm.Hide();
 				this.Hide();
 
 				HotkeyManager.UnregisterHotKey(this.Handle, 0);
 
-				stopForm = new StopForm(DateTime.Now);
+				string videoStr = videoStr = width + "x" + height + " (" + quality + "%";
+				if (captureCursorCheckBox.Checked)
+				{
+					videoStr += ", Cursor";
+				}
+				videoStr += ")";
+
+				string audioStr = inputDeviceComboBox.Text;
+
+				stopForm = new StopForm(DateTime.Now, darkMode, videoStr, audioStr);
 				stopForm.Owner = this;
 				stopForm.Show();
 			}
 			catch
 			{
 				MessageBox.Show("Something went wrong!", "Error");
+			}
+		}
+
+		private void Recorder_OnPeakVolumeChanged(object sender, OnPeakVolumeChangedArgs e)
+		{
+			if (stopForm != null)
+			{
+				stopForm.UpdateVolumeBar(e.Volume);
 			}
 		}
 
@@ -225,6 +291,16 @@ namespace quick_screen_recorder
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			HotkeyManager.UnregisterHotKey(this.Handle, 0);
+		}
+
+		private void onTopCheckBox_CheckedChanged(object sender, EventArgs e)
+		{
+			this.TopMost = onTopCheckBox.Checked;
+		}
+
+		public void MuteRecorder(bool b)
+		{
+			recorder.Mute = b;
 		}
 	}
 }

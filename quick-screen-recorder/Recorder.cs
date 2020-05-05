@@ -18,7 +18,6 @@ namespace quick_screen_recorder
         private IAviAudioStream audioStream;
 
         private IWaveIn audioSource;
-        //private IWaveIn wasapiSource;
 
         private Thread screenThread;
 
@@ -26,7 +25,7 @@ namespace quick_screen_recorder
         private AutoResetEvent videoFrameWritten = new AutoResetEvent(false);
         private AutoResetEvent audioBlockWritten = new AutoResetEvent(false);
 
-        //private WaveFileWriter waveFile;
+        private WaveFileWriter waveFile;
 
         private int x;
         private int y;
@@ -58,9 +57,11 @@ namespace quick_screen_recorder
 
         const Int32 CURSOR_SHOWING = 0x00000001;
 
+        public bool Mute = false;
+
         public Recorder(string filePath, 
             int quality, int x, int y, int width, int height, bool captureCursor, 
-            int inputSourceIndex)
+            int inputSourceIndex, bool separateAudio)
         {
             this.x = x;
             this.y = y;
@@ -97,24 +98,28 @@ namespace quick_screen_recorder
                 };
                 audioSource.DataAvailable += audioSource_DataAvailable;
 
-                //waveFile = new WaveFileWriter(filePath + ".wav", audioSource.WaveFormat);
+                if (separateAudio)
+                {
+                    waveFile = new WaveFileWriter(filePath + " (Input audio).wav", audioSource.WaveFormat);
+                }
             } 
             else if (inputSourceIndex == -1)
             {
-                //var waveFormat = new WaveFormat(44100, 16, 1);
                 audioSource = new WasapiLoopbackCapture();
 
                 audioStream = writer.AddAudioStream(
-                    channelCount: audioSource.WaveFormat.Channels,
+                    channelCount: 1,
                     samplesPerSecond: audioSource.WaveFormat.SampleRate,
                     bitsPerSample: audioSource.WaveFormat.BitsPerSample
                 );
                 audioStream.Name = "Quick Screen Recorder - System sounds audio stream";
 
-
                 audioSource.DataAvailable += audioSource_DataAvailable;
 
-                //waveFile = new WaveFileWriter(filePath + ".wav", wasapiSource.WaveFormat);
+                if (separateAudio)
+                {
+                    waveFile = new WaveFileWriter(filePath + " (System sounds).wav", audioSource.WaveFormat);
+                }
             }
 
             screenThread = new Thread(RecordScreen)
@@ -130,13 +135,6 @@ namespace quick_screen_recorder
                 audioSource.StartRecording();
             }
 
-            //if (wasapiSource != null)
-            //{
-            //    videoFrameWritten.Set();
-            //    audioBlockWritten.Reset();
-            //    wasapiSource.StartRecording();
-            //}
-
             screenThread.Start();
         }
 
@@ -145,17 +143,17 @@ namespace quick_screen_recorder
             stopThread.Set();
             screenThread.Join();
 
+            if (waveFile != null)
+            {
+                waveFile.Dispose();
+                waveFile = null;
+            }
+
             if (audioSource != null)
             {
                 audioSource.StopRecording();
                 audioSource.DataAvailable -= audioSource_DataAvailable;
             }
-
-            //if (waveFile != null)
-            //{
-            //    waveFile.Dispose();
-            //    waveFile = null;
-            //}
 
             writer.Close();
 
@@ -250,18 +248,104 @@ namespace quick_screen_recorder
 
         private void audioSource_DataAvailable(object sender, WaveInEventArgs e)
         {
-            //if (waveFile != null)
-            //{
-            //    waveFile.Write(e.Buffer, 0, e.BytesRecorded);
-            //    waveFile.Flush();
-            //}
+            int vol = 0;
+
+            if (waveFile != null)
+            {
+                if (Mute)
+                {
+                    waveFile.Write(new byte[e.BytesRecorded], 0, e.BytesRecorded);
+                }
+                else
+                {
+                    waveFile.Write(e.Buffer, 0, e.BytesRecorded);
+                }
+                waveFile.Flush();
+            }
 
             var signalled = WaitHandle.WaitAny(new WaitHandle[] { videoFrameWritten, stopThread });
             if (signalled == 0)
             {
-                audioStream.WriteBlock(e.Buffer, 0, e.BytesRecorded);
+                if (audioSource.WaveFormat.BitsPerSample == 32)
+                {
+                    if (Mute)
+                    {
+                        audioStream.WriteBlock(new byte[e.BytesRecorded / 2], 0, e.BytesRecorded / 2);
+                    }
+                    else
+                    {
+                        byte[] newArray16Bit = new byte[e.BytesRecorded / 2];
+                        short two;
+                        float value;
+                        for (int i = 0, j = 0; i < e.BytesRecorded; i += 4, j += 2)
+                        {
+                            value = (BitConverter.ToSingle(e.Buffer, i));
+                            two = (short)(value * short.MaxValue);
+
+                            newArray16Bit[j] = (byte)(two & 0xFF);
+                            newArray16Bit[j + 1] = (byte)((two >> 8) & 0xFF);
+                        }
+
+                        audioStream.WriteBlock(newArray16Bit, 0, e.BytesRecorded / 2);
+
+                        float max = 0;
+                        for (int index = 0; index < e.BytesRecorded / 2; index += 2)
+                        {
+                            short sample = (short)((newArray16Bit[index + 1] << 8) | newArray16Bit[index + 0]);
+                            var sample32 = sample / 32768f;
+                            if (sample32 < 0) sample32 = -sample32;
+                            if (sample32 > max) max = sample32;
+                        }
+
+                        vol = (int)(100 * max);
+                    }
+                }
+                else
+                {
+                    if (Mute)
+                    {
+                        audioStream.WriteBlock(new byte[e.BytesRecorded], 0, e.BytesRecorded);
+                    }
+                    else
+                    {
+                        audioStream.WriteBlock(e.Buffer, 0, e.BytesRecorded);
+
+                        float max = 0;
+                        for (int index = 0; index < e.BytesRecorded; index += 2)
+                        {
+                            short sample = (short)((e.Buffer[index + 1] << 8) | e.Buffer[index + 0]);
+                            var sample32 = sample / 32768f;
+                            if (sample32 < 0) sample32 = -sample32;
+                            if (sample32 > max) max = sample32;
+                        }
+
+                        vol = (int)(100 * max);
+                    }
+                }
                 audioBlockWritten.Set();
             }
+
+            OnPeakVolumeChangedArgs opvcArgs = new OnPeakVolumeChangedArgs()
+            {
+                Volume = vol
+            };
+            PeakVolumeChanged(opvcArgs);
         }
+
+        protected virtual void PeakVolumeChanged(OnPeakVolumeChangedArgs e)
+        {
+            EventHandler<OnPeakVolumeChangedArgs> handler = OnPeakVolumeChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public event EventHandler<OnPeakVolumeChangedArgs> OnPeakVolumeChanged;
+    }
+
+    public class OnPeakVolumeChangedArgs : EventArgs
+    {
+        public int Volume { get; set; }
     }
 }
