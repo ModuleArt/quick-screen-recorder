@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="/quick-screen-recorder/resources/imgs/rec96.png">
+</p>
 <h1 align="center">Quick Screen Recorder</h1>
 
 <p align="center">
@@ -19,8 +22,9 @@
 
 <h2 align="center">Install</h2>
 <p align="center">
-  Windows 7, 8.1, 10  |  Size: 0.4 MB  |  v1.0.0 (Portable) |  <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/download/v1.0.0/QuickScreenRecorder-Portable.zip">Download</a><br>
-  Uses <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472">.Net 4.7.2</a>
+  Windows 7, 8.1, 10  | <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/tag/v1.1.0">v1.1.0</a> (1.9 MB) |  <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/download/v1.1.0/QuickScreenRecorder-Setup.msi">Download</a><br>
+  Uses <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472">.Net 4.7.2</a><br><br>
+  <img src="/docs/screenshots/main.png">
 </p>
 
 <h2 align="center">Other "Quick" apps</h2>
