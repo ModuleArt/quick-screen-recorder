@@ -130,6 +130,16 @@
         A0POvQA9DCYiD7QYpAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="refreshBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOJJREFUOE+lkktqAkEURXtiUIJKprqWRBFciw7iQJ34WUFciyMRXYLgD3UhopJB
+        ZnpuPyX2ryLmwKFu0d1FVfX1HqBzHZ/mjF8WH+MF67jAPWoBWcI/KeIah/iOb6iPWyg+sWAxShq32PZn
+        v9zfQR83mPJnIZo4suhkgtpJhCV+WHRSxZnFIN/4atFJHg8WgxwxZ9FJFk8Wg2hbFYtOyhh7hAaOLTrR
+        JaonEVSgHfb8mdG9jjf0TD3Ru7GoJNqJGKBKlEH9nSmuMLFI9+ictwr/4BxrGFugJFRfLfAvwncQwvMu
+        vNonXS1zg0cAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="recButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

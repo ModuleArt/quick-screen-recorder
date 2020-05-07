@@ -14,6 +14,8 @@ namespace quick_screen_recorder
 		public static Color SecondColorDark = Color.FromArgb(56, 56, 56);
 		public static Color AccentColorDark = Color.FromArgb(73, 169, 207);
 
+		public static Color BorderColor = Color.FromArgb(100, 100, 100);
+
 		private enum WindowCompositionAttribute
 		{
 			WCA_UNDEFINED = 0,
@@ -143,12 +145,12 @@ namespace quick_screen_recorder
 
 			p.Graphics.Clear(ThemeManager.BackColorDark);
 
-			p.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
-			p.Graphics.DrawString(box.Text, box.Font, Brushes.White, -1, -3);
+			p.Graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
+			p.Graphics.DrawString(box.Text, box.Font, Brushes.White, -2, -3);
 
-			p.Graphics.DrawLine(pen, 0, 16, 0, box.Height - 2);
-			p.Graphics.DrawLine(pen, 0, 16, box.Width - 1, 16);
-			p.Graphics.DrawLine(pen, box.Width - 1, 16, box.Width - 1, box.Height - 2);
+			p.Graphics.DrawLine(pen, 0, 20, 0, box.Height - 2); //left border
+			p.Graphics.DrawLine(pen, p.Graphics.MeasureString(box.Text, box.Font).Width + 6, 8, box.Width - 1, 8); //top border
+			p.Graphics.DrawLine(pen, box.Width - 1, 8, box.Width - 1, box.Height - 2);
 			p.Graphics.DrawLine(pen, 0, box.Height - 2, box.Width - 1, box.Height - 2);
 		}
 	}

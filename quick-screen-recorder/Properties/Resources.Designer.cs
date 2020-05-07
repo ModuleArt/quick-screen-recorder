@@ -83,6 +83,16 @@ namespace quick_screen_recorder.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap white_refresh {
+            get {
+                object obj = ResourceManager.GetObject("white_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap white_stop {
             get {
                 object obj = ResourceManager.GetObject("white_stop", resourceCulture);

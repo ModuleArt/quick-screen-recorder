@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>rec.ico</ApplicationIcon>
@@ -67,6 +69,12 @@
     </Compile>
     <Compile Include="AreaForm.Designer.cs">
       <DependentUpon>AreaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomNumericBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HotkeyManager.cs" />
     <Compile Include="Recorder.cs" />
@@ -129,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rec.ico" />
+    <None Include="resources\imgs\light\white-refresh.png" />
     <None Include="resources\imgs\light\white-stop.png" />
     <None Include="resources\imgs\light\white-record.png" />
     <None Include="resources\imgs\light\white-about.png" />

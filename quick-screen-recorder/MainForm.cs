@@ -1,5 +1,4 @@
-﻿using NAudio.CoreAudioApi;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System;
 using System.Data;
 using System.Drawing;
@@ -16,8 +15,6 @@ namespace quick_screen_recorder
 		private Recorder recorder = null;
 
 		private bool darkMode;
-
-		//private MMDeviceEnumerator deviceEnum = new MMDeviceEnumerator();
 
 		public MainForm(bool darkMode)
 		{
@@ -39,13 +36,7 @@ namespace quick_screen_recorder
 			areaComboBox.SelectedIndex = 0;
 			inputDeviceComboBox.SelectedIndex = 0;
 
-			//var devices = deviceEnum.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
-			//inputDeviceComboBox.Items.AddRange(devices.ToArray());
-
-			for (int i = 0; i < WaveIn.DeviceCount; i++)
-			{
-				inputDeviceComboBox.Items.Add(WaveIn.GetCapabilities(i).ProductName);
-			}
+			RefreshAudioDevices();
 
 			if (darkMode)
 			{
@@ -75,6 +66,24 @@ namespace quick_screen_recorder
 			generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
 			videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
 			audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
+
+			qualityComboBox.BackColor = ThemeManager.SecondColorDark;
+			qualityComboBox.ForeColor = Color.White;
+
+			inputDeviceComboBox.BackColor = ThemeManager.SecondColorDark;
+			inputDeviceComboBox.ForeColor = Color.White;
+
+			areaComboBox.BackColor = ThemeManager.SecondColorDark;
+			areaComboBox.ForeColor = Color.White;
+
+			widthNumeric.BackColor = ThemeManager.SecondColorDark;
+			widthNumeric.ForeColor = Color.White;
+
+			heightNumeric.BackColor = ThemeManager.SecondColorDark;
+			heightNumeric.ForeColor = Color.White;
+
+			refreshBtn.BackColor = ThemeManager.SecondColorDark;
+			refreshBtn.Image = Properties.Resources.white_refresh;
 		}
 
 		public void SetAreaWidth(int w)
@@ -301,6 +310,26 @@ namespace quick_screen_recorder
 		public void MuteRecorder(bool b)
 		{
 			recorder.Mute = b;
+		}
+
+		private void refreshBtn_Click(object sender, EventArgs e)
+		{
+			RefreshAudioDevices();
+		}
+
+		private void RefreshAudioDevices()
+		{
+			inputDeviceComboBox.SelectedIndex = 0;
+
+			while (inputDeviceComboBox.Items.Count > 2)
+			{
+				inputDeviceComboBox.Items.RemoveAt(inputDeviceComboBox.Items.Count - 1);
+			}
+
+			for (int i = 0; i < WaveIn.DeviceCount; i++)
+			{
+				inputDeviceComboBox.Items.Add(WaveIn.GetCapabilities(i).ProductName);
+			}
 		}
 	}
 }

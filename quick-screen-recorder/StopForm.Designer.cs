@@ -53,7 +53,7 @@
 			// stopButton
 			// 
 			this.stopButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.stopButton.FlatAppearance.BorderSize = 0;
+			this.stopButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
 			this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.stopButton.Image = ((System.Drawing.Image)(resources.GetObject("stopButton.Image")));
 			this.stopButton.Location = new System.Drawing.Point(9, 9);
