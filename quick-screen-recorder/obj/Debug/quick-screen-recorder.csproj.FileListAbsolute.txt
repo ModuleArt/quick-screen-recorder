@@ -11,7 +11,10 @@ D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick-s
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick-screen-recorder.pdb
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.MainForm.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.AreaForm.resources
-D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.AboutBox1.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Debug\NAudio.dll
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Debug\NAudio.xml
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.StopForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.AboutForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Debug\Octokit.dll
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.DownloadForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Debug\quick_screen_recorder.UpdateForm.resources

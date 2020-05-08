@@ -7,10 +7,23 @@ namespace quick_screen_recorder
 {
 	class CustomNumericBox : NumericUpDown
 	{
+		private bool darkMode = false;
+
 		public CustomNumericBox()
 		{
 			SetStyle(ControlStyles.UserPaint, true);
 			this.Controls[0].Visible = false;
+		}
+
+		public void SetDarkMode(bool dark)
+		{
+			this.darkMode = dark;
+
+			if (dark)
+			{
+				this.BackColor = ThemeManager.DarkSecondColor;
+				this.ForeColor = Color.White;
+			}
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
@@ -20,13 +33,20 @@ namespace quick_screen_recorder
 
 			e.Graphics.DrawLine(new Pen(ThemeManager.BorderColor), this.Width - 18, 0, this.Width - 18, this.Height);
 			e.Graphics.DrawLine(new Pen(ThemeManager.BorderColor), this.Width - 18, this.Height / 2, this.Width, this.Height / 2);
-			e.Graphics.FillPolygon(new SolidBrush(this.ForeColor), new PointF[]
+
+			Brush arrowsBrush = new SolidBrush(this.ForeColor);
+			if (!this.Enabled)
+			{
+				arrowsBrush = new SolidBrush(ThemeManager.BorderColor);
+			}
+
+			e.Graphics.FillPolygon(arrowsBrush, new PointF[]
 			{
 				new PointF(this.Width - 13, 15),
 				new PointF(this.Width - 9, 19),
 				new PointF(this.Width - 5, 15)
 			});
-			e.Graphics.FillPolygon(new SolidBrush(this.ForeColor), new PointF[]
+			e.Graphics.FillPolygon(arrowsBrush, new PointF[]
 			{
 				new PointF(this.Width - 14, 8),
 				new PointF(this.Width - 9, 3),

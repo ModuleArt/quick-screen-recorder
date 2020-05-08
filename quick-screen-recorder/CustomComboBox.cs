@@ -6,15 +6,38 @@ namespace quick_screen_recorder
 {
 	class CustomComboBox : ComboBox
 	{
+		private bool darkMode = false;
+		private string text = "";
+
 		public CustomComboBox()
 		{
 			SetStyle(ControlStyles.UserPaint, true);
 			this.DrawMode = DrawMode.OwnerDrawFixed;
+			this.text = Text;
+		}
+
+		public void SetDarkMode(bool dark)
+		{
+			this.darkMode = dark;
+
+			if (dark)
+			{
+				this.BackColor = ThemeManager.DarkSecondColor;
+				this.ForeColor = Color.White;
+			}
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			e.Graphics.Clear(ThemeManager.BackColorDark);
+			if (darkMode)
+			{
+				e.Graphics.Clear(ThemeManager.DarkBackColor);
+			}
+			else
+			{
+				e.Graphics.Clear(ThemeManager.LightBackColor);
+			}
+			
 			e.Graphics.FillRectangle(new SolidBrush(this.BackColor), 0, 0, this.Width, this.Height - 2);
 			Rectangle newBounds = new Rectangle(this.ClientRectangle.X, this.ClientRectangle.Y, this.ClientRectangle.Width, this.ClientRectangle.Height - 1);
 			ControlPaint.DrawBorder(e.Graphics, newBounds, ThemeManager.BorderColor, ButtonBorderStyle.Solid);

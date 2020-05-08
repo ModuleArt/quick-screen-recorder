@@ -37,29 +37,32 @@
 			this.fileLabel = new System.Windows.Forms.Label();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
 			this.qualityLabel = new System.Windows.Forms.Label();
-			this.aboutBtn = new System.Windows.Forms.Button();
 			this.areaLabel = new System.Windows.Forms.Label();
 			this.videoGroup = new System.Windows.Forms.GroupBox();
 			this.widthNumeric = new quick_screen_recorder.CustomNumericBox();
 			this.qualityComboBox = new quick_screen_recorder.CustomComboBox();
 			this.heightNumeric = new quick_screen_recorder.CustomNumericBox();
 			this.areaComboBox = new quick_screen_recorder.CustomComboBox();
-			this.captureCursorCheckBox = new System.Windows.Forms.CheckBox();
+			this.captureCursorCheckBox = new quick_screen_recorder.CustomCheckBox();
 			this.inputDeviceLabel = new System.Windows.Forms.Label();
 			this.audioGroup = new System.Windows.Forms.GroupBox();
 			this.refreshBtn = new System.Windows.Forms.Button();
 			this.inputDeviceComboBox = new quick_screen_recorder.CustomComboBox();
-			this.separateAudioCheckBox = new System.Windows.Forms.CheckBox();
+			this.separateAudioCheckBox = new quick_screen_recorder.CustomCheckBox();
 			this.generalGroup = new System.Windows.Forms.GroupBox();
 			this.aviLabel = new System.Windows.Forms.Label();
-			this.recButton = new System.Windows.Forms.Button();
 			this.updateTimer = new System.Windows.Forms.Timer(this.components);
-			this.onTopCheckBox = new System.Windows.Forms.CheckBox();
+			this.recButton = new System.Windows.Forms.Button();
+			this.toolStrip1 = new quick_screen_recorder.CustomToolStrip();
+			this.onTopBtn = new System.Windows.Forms.ToolStripButton();
+			this.settingsBtn = new System.Windows.Forms.ToolStripButton();
+			this.aboutBtn = new System.Windows.Forms.ToolStripButton();
 			this.videoGroup.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.widthNumeric)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.heightNumeric)).BeginInit();
 			this.audioGroup.SuspendLayout();
 			this.generalGroup.SuspendLayout();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// folderTextBox
@@ -115,30 +118,16 @@
 			// qualityLabel
 			// 
 			this.qualityLabel.AutoSize = true;
-			this.qualityLabel.Location = new System.Drawing.Point(19, 26);
+			this.qualityLabel.Location = new System.Drawing.Point(19, 25);
 			this.qualityLabel.Name = "qualityLabel";
 			this.qualityLabel.Size = new System.Drawing.Size(48, 15);
 			this.qualityLabel.TabIndex = 10;
 			this.qualityLabel.Text = "Quality:";
 			// 
-			// aboutBtn
-			// 
-			this.aboutBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.aboutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-			this.aboutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.aboutBtn.Image = ((System.Drawing.Image)(resources.GetObject("aboutBtn.Image")));
-			this.aboutBtn.Location = new System.Drawing.Point(312, 9);
-			this.aboutBtn.Margin = new System.Windows.Forms.Padding(0);
-			this.aboutBtn.Name = "aboutBtn";
-			this.aboutBtn.Size = new System.Drawing.Size(23, 23);
-			this.aboutBtn.TabIndex = 2;
-			this.aboutBtn.UseVisualStyleBackColor = false;
-			this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
-			// 
 			// areaLabel
 			// 
 			this.areaLabel.AutoSize = true;
-			this.areaLabel.Location = new System.Drawing.Point(33, 54);
+			this.areaLabel.Location = new System.Drawing.Point(33, 55);
 			this.areaLabel.Name = "areaLabel";
 			this.areaLabel.Size = new System.Drawing.Size(34, 15);
 			this.areaLabel.TabIndex = 18;
@@ -157,7 +146,7 @@
 			this.videoGroup.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
 			this.videoGroup.Name = "videoGroup";
 			this.videoGroup.Size = new System.Drawing.Size(326, 106);
-			this.videoGroup.TabIndex = 21;
+			this.videoGroup.TabIndex = 6;
 			this.videoGroup.TabStop = false;
 			this.videoGroup.Text = "Video options";
 			// 
@@ -177,7 +166,7 @@
             0});
 			this.widthNumeric.Name = "widthNumeric";
 			this.widthNumeric.Size = new System.Drawing.Size(60, 23);
-			this.widthNumeric.TabIndex = 8;
+			this.widthNumeric.TabIndex = 9;
 			this.widthNumeric.Value = new decimal(new int[] {
             160,
             0,
@@ -201,7 +190,7 @@
 			this.qualityComboBox.Location = new System.Drawing.Point(73, 22);
 			this.qualityComboBox.Name = "qualityComboBox";
 			this.qualityComboBox.Size = new System.Drawing.Size(247, 24);
-			this.qualityComboBox.TabIndex = 6;
+			this.qualityComboBox.TabIndex = 7;
 			// 
 			// heightNumeric
 			// 
@@ -219,7 +208,7 @@
             0});
 			this.heightNumeric.Name = "heightNumeric";
 			this.heightNumeric.Size = new System.Drawing.Size(60, 23);
-			this.heightNumeric.TabIndex = 9;
+			this.heightNumeric.TabIndex = 10;
 			this.heightNumeric.Value = new decimal(new int[] {
             160,
             0,
@@ -239,25 +228,24 @@
 			this.areaComboBox.Location = new System.Drawing.Point(73, 52);
 			this.areaComboBox.Name = "areaComboBox";
 			this.areaComboBox.Size = new System.Drawing.Size(113, 24);
-			this.areaComboBox.TabIndex = 7;
+			this.areaComboBox.TabIndex = 8;
 			this.areaComboBox.SelectedIndexChanged += new System.EventHandler(this.areaComboBox_SelectedIndexChanged);
 			// 
 			// captureCursorCheckBox
 			// 
-			this.captureCursorCheckBox.AutoSize = true;
 			this.captureCursorCheckBox.Checked = true;
 			this.captureCursorCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.captureCursorCheckBox.Location = new System.Drawing.Point(216, 81);
 			this.captureCursorCheckBox.Name = "captureCursorCheckBox";
 			this.captureCursorCheckBox.Size = new System.Drawing.Size(104, 19);
-			this.captureCursorCheckBox.TabIndex = 10;
+			this.captureCursorCheckBox.TabIndex = 11;
 			this.captureCursorCheckBox.Text = "Capture cursor";
 			this.captureCursorCheckBox.UseVisualStyleBackColor = true;
 			// 
 			// inputDeviceLabel
 			// 
 			this.inputDeviceLabel.AutoSize = true;
-			this.inputDeviceLabel.Location = new System.Drawing.Point(29, 25);
+			this.inputDeviceLabel.Location = new System.Drawing.Point(29, 26);
 			this.inputDeviceLabel.Name = "inputDeviceLabel";
 			this.inputDeviceLabel.Size = new System.Drawing.Size(38, 15);
 			this.inputDeviceLabel.TabIndex = 26;
@@ -287,7 +275,7 @@
 			this.refreshBtn.Margin = new System.Windows.Forms.Padding(0);
 			this.refreshBtn.Name = "refreshBtn";
 			this.refreshBtn.Size = new System.Drawing.Size(23, 23);
-			this.refreshBtn.TabIndex = 12;
+			this.refreshBtn.TabIndex = 13;
 			this.refreshBtn.UseVisualStyleBackColor = false;
 			this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
 			// 
@@ -305,15 +293,15 @@
 			this.inputDeviceComboBox.Location = new System.Drawing.Point(73, 22);
 			this.inputDeviceComboBox.Name = "inputDeviceComboBox";
 			this.inputDeviceComboBox.Size = new System.Drawing.Size(217, 24);
-			this.inputDeviceComboBox.TabIndex = 11;
+			this.inputDeviceComboBox.TabIndex = 12;
+			this.inputDeviceComboBox.SelectedIndexChanged += new System.EventHandler(this.inputDeviceComboBox_SelectedIndexChanged);
 			// 
 			// separateAudioCheckBox
 			// 
-			this.separateAudioCheckBox.AutoSize = true;
 			this.separateAudioCheckBox.Location = new System.Drawing.Point(109, 51);
 			this.separateAudioCheckBox.Name = "separateAudioCheckBox";
 			this.separateAudioCheckBox.Size = new System.Drawing.Size(211, 19);
-			this.separateAudioCheckBox.TabIndex = 13;
+			this.separateAudioCheckBox.TabIndex = 14;
 			this.separateAudioCheckBox.Text = "Write audio to a separate file (.wav)";
 			this.separateAudioCheckBox.UseVisualStyleBackColor = true;
 			// 
@@ -329,7 +317,7 @@
 			this.generalGroup.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
 			this.generalGroup.Name = "generalGroup";
 			this.generalGroup.Size = new System.Drawing.Size(326, 90);
-			this.generalGroup.TabIndex = 25;
+			this.generalGroup.TabIndex = 2;
 			this.generalGroup.TabStop = false;
 			this.generalGroup.Text = "General options";
 			// 
@@ -359,29 +347,72 @@
 			this.recButton.UseVisualStyleBackColor = false;
 			this.recButton.Click += new System.EventHandler(this.recButton_Click);
 			// 
-			// onTopCheckBox
+			// toolStrip1
 			// 
-			this.onTopCheckBox.AutoSize = true;
-			this.onTopCheckBox.Checked = true;
-			this.onTopCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.onTopCheckBox.Location = new System.Drawing.Point(208, 12);
-			this.onTopCheckBox.Name = "onTopCheckBox";
-			this.onTopCheckBox.Size = new System.Drawing.Size(101, 19);
-			this.onTopCheckBox.TabIndex = 1;
-			this.onTopCheckBox.Text = "Always on top";
-			this.onTopCheckBox.UseVisualStyleBackColor = true;
-			this.onTopCheckBox.CheckedChanged += new System.EventHandler(this.onTopCheckBox_CheckedChanged);
+			this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.onTopBtn,
+            this.settingsBtn,
+            this.aboutBtn});
+			this.toolStrip1.Location = new System.Drawing.Point(260, 0);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Padding = new System.Windows.Forms.Padding(5);
+			this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+			this.toolStrip1.Size = new System.Drawing.Size(115, 35);
+			this.toolStrip1.TabIndex = 1;
+			this.toolStrip1.TabStop = true;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// onTopBtn
+			// 
+			this.onTopBtn.AutoSize = false;
+			this.onTopBtn.CheckOnClick = true;
+			this.onTopBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.onTopBtn.Image = ((System.Drawing.Image)(resources.GetObject("onTopBtn.Image")));
+			this.onTopBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.onTopBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.onTopBtn.Name = "onTopBtn";
+			this.onTopBtn.Size = new System.Drawing.Size(24, 25);
+			this.onTopBtn.Text = "Always on top | Ctrl + T";
+			this.onTopBtn.ToolTipText = "Always on top | Ctrl+T";
+			this.onTopBtn.CheckedChanged += new System.EventHandler(this.onTopCheckBox_CheckedChanged);
+			// 
+			// settingsBtn
+			// 
+			this.settingsBtn.AutoSize = false;
+			this.settingsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.settingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("settingsBtn.Image")));
+			this.settingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.settingsBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.settingsBtn.Name = "settingsBtn";
+			this.settingsBtn.Size = new System.Drawing.Size(24, 25);
+			this.settingsBtn.Text = "About | F1";
+			this.settingsBtn.ToolTipText = "Settings | Ctrl+Comma";
+			this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+			// 
+			// aboutBtn
+			// 
+			this.aboutBtn.AutoSize = false;
+			this.aboutBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.aboutBtn.Image = ((System.Drawing.Image)(resources.GetObject("aboutBtn.Image")));
+			this.aboutBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.aboutBtn.Margin = new System.Windows.Forms.Padding(0);
+			this.aboutBtn.Name = "aboutBtn";
+			this.aboutBtn.Size = new System.Drawing.Size(24, 25);
+			this.aboutBtn.Text = "About | F1";
+			this.aboutBtn.Click += new System.EventHandler(this.aboutBtn_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.ClientSize = new System.Drawing.Size(344, 356);
-			this.Controls.Add(this.onTopCheckBox);
+			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.generalGroup);
 			this.Controls.Add(this.audioGroup);
 			this.Controls.Add(this.videoGroup);
-			this.Controls.Add(this.aboutBtn);
 			this.Controls.Add(this.recButton);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -390,7 +421,6 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Quick Screen Recorder";
-			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.MediumBlue;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);
@@ -402,6 +432,8 @@
 			this.audioGroup.PerformLayout();
 			this.generalGroup.ResumeLayout(false);
 			this.generalGroup.PerformLayout();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -417,23 +449,25 @@
 		private System.Windows.Forms.Label fileLabel;
 		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
 		private System.Windows.Forms.Label qualityLabel;
-		private System.Windows.Forms.Button aboutBtn;
 		private System.Windows.Forms.Label areaLabel;
 		private System.Windows.Forms.GroupBox videoGroup;
-		private System.Windows.Forms.CheckBox captureCursorCheckBox;
+		private CustomCheckBox captureCursorCheckBox;
 		private System.Windows.Forms.Label inputDeviceLabel;
 		private System.Windows.Forms.GroupBox audioGroup;
 		private System.Windows.Forms.GroupBox generalGroup;
 		private System.Windows.Forms.Label aviLabel;
 		private System.Windows.Forms.Timer updateTimer;
-		private System.Windows.Forms.CheckBox separateAudioCheckBox;
-		private System.Windows.Forms.CheckBox onTopCheckBox;
 		private CustomComboBox areaComboBox;
 		private CustomComboBox qualityComboBox;
 		private CustomComboBox inputDeviceComboBox;
 		private CustomNumericBox heightNumeric;
 		private CustomNumericBox widthNumeric;
 		private System.Windows.Forms.Button refreshBtn;
+		private CustomToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton onTopBtn;
+		private System.Windows.Forms.ToolStripButton aboutBtn;
+		private System.Windows.Forms.ToolStripButton settingsBtn;
+		private CustomCheckBox separateAudioCheckBox;
 	}
 }
 

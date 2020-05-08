@@ -39,7 +39,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EFBCD4E60D8945CF96CF1DA348E4EA95"
+        "MsmKey" = "8:_DA9DA888B7664DFA9587ED0E68E8F543"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -130,6 +130,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -242,10 +250,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EFBCD4E60D8945CF96CF1DA348E4EA95"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DA9DA888B7664DFA9587ED0E68E8F543"
             {
-            "SourcePath" = "8:..\\quick-screen-recorder\\resources\\quick-sound-recorder.VisualElementsManifest.xml"
-            "TargetName" = "8:quick-sound-recorder.VisualElementsManifest.xml"
+            "SourcePath" = "8:..\\quick-screen-recorder\\resources\\quick-screen-recorder.VisualElementsManifest.xml"
+            "TargetName" = "8:quick-screen-recorder.VisualElementsManifest.xml"
             "Tag" = "8:"
             "Folder" = "8:_D598DEC863C249D2B9AC211BBDB1CCAE"
             "Condition" = "8:"
@@ -349,15 +357,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Quick Screen Recorder"
-        "ProductCode" = "8:{0CD8299D-8536-42D0-9F7C-AA91DA23F2F4}"
-        "PackageCode" = "8:{019D2869-029D-4ADA-BB19-E55C58011F02}"
+        "ProductCode" = "8:{853893A7-1D72-44E8-8A03-70719DE159AD}"
+        "PackageCode" = "8:{F586EE99-E23A-4D62-AAFC-95928BB435CD}"
         "UpgradeCode" = "8:{3539F280-00D2-49B4-9B81-67651777E89C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Module Art"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/ModuleArt/quick-screen-recorder/issues"

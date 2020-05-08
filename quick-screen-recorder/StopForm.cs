@@ -27,9 +27,9 @@ namespace quick_screen_recorder
 			if (darkMode)
 			{
 				this.ForeColor = Color.White;
-				this.BackColor = ThemeManager.BackColorDark;
+				this.BackColor = ThemeManager.DarkBackColor;
 
-				stopButton.BackColor = ThemeManager.SecondColorDark;
+				stopButton.BackColor = ThemeManager.DarkSecondColor;
 				stopButton.Image = Properties.Resources.white_stop;
 			}
 		}

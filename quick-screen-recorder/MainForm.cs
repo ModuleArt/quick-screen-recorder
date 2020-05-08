@@ -47,43 +47,40 @@ namespace quick_screen_recorder
 		private void applyDarkTheme()
 		{
 			this.ForeColor = Color.White;
-			this.BackColor = ThemeManager.BackColorDark;
+			this.BackColor = ThemeManager.DarkBackColor;
 
-			recButton.BackColor = ThemeManager.SecondColorDark;
+			recButton.BackColor = ThemeManager.DarkSecondColor;
 			recButton.Image = Properties.Resources.white_record;
 
-			browseFolderBtn.BackColor = ThemeManager.SecondColorDark;
+			browseFolderBtn.BackColor = ThemeManager.DarkSecondColor;
 
-			aboutBtn.BackColor = ThemeManager.SecondColorDark;
+			toolStrip1.SetDarkMode(true, false);
 			aboutBtn.Image = Properties.Resources.white_about;
+			onTopBtn.Image = Properties.Resources.white_ontop;
+			settingsBtn.Image = Properties.Resources.white_settings;
 
-			fileNameTextBox.BackColor = ThemeManager.SecondColorDark;
+			fileNameTextBox.BackColor = ThemeManager.DarkSecondColor;
 			fileNameTextBox.ForeColor = Color.White;
 
-			folderTextBox.BackColor = ThemeManager.SecondColorDark;
+			folderTextBox.BackColor = ThemeManager.DarkSecondColor;
 			folderTextBox.ForeColor = Color.White;
 
 			generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
 			videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
 			audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
 
-			qualityComboBox.BackColor = ThemeManager.SecondColorDark;
-			qualityComboBox.ForeColor = Color.White;
+			qualityComboBox.SetDarkMode(true);
+			inputDeviceComboBox.SetDarkMode(true);
+			areaComboBox.SetDarkMode(true);
 
-			inputDeviceComboBox.BackColor = ThemeManager.SecondColorDark;
-			inputDeviceComboBox.ForeColor = Color.White;
+			widthNumeric.SetDarkMode(true);
+			heightNumeric.SetDarkMode(true);
 
-			areaComboBox.BackColor = ThemeManager.SecondColorDark;
-			areaComboBox.ForeColor = Color.White;
-
-			widthNumeric.BackColor = ThemeManager.SecondColorDark;
-			widthNumeric.ForeColor = Color.White;
-
-			heightNumeric.BackColor = ThemeManager.SecondColorDark;
-			heightNumeric.ForeColor = Color.White;
-
-			refreshBtn.BackColor = ThemeManager.SecondColorDark;
+			refreshBtn.BackColor = ThemeManager.DarkSecondColor;
 			refreshBtn.Image = Properties.Resources.white_refresh;
+
+			separateAudioCheckBox.SetDarkMode(true);
+			captureCursorCheckBox.SetDarkMode(true);
 		}
 
 		public void SetAreaWidth(int w)
@@ -120,6 +117,49 @@ namespace quick_screen_recorder
 				else
 				{
 					heightNumeric.Value = h;
+				}
+			}
+		}
+
+		public async void checkForUpdates(bool showUpToDateDialog)
+		{
+			try
+			{
+				UpdateChecker checker = new UpdateChecker("ModuleArt", "quick-screen-recorder");
+
+				bool update = await checker.CheckUpdate();
+
+				if (update == false)
+				{
+					if (showUpToDateDialog)
+					{
+						MessageBox.Show("Application is up to date", "Updator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+				}
+				else
+				{
+					UpdateForm updateDialog = new UpdateForm(checker, "Quick Screen Recorder", darkMode);
+					updateDialog.TopMost = this.TopMost;
+
+					DialogResult result = updateDialog.ShowDialog();
+					if (result == DialogResult.Yes)
+					{
+						DownloadForm downloadBox = new DownloadForm(checker.GetAssetUrl("QuickScreenRecorder-Setup.msi"), darkMode);
+						downloadBox.Owner = this;
+						downloadBox.TopMost = this.TopMost;
+						downloadBox.ShowDialog();
+					}
+					else
+					{
+						updateDialog.Dispose();
+					}
+				}
+			}
+			catch
+			{
+				if (showUpToDateDialog)
+				{
+					MessageBox.Show("Connection error", "Updator", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			}
 		}
@@ -226,11 +266,13 @@ namespace quick_screen_recorder
 
 		private void aboutBtn_Click(object sender, EventArgs e)
 		{
-			AboutBox1 ab = new AboutBox1();
-			if (ab.ShowDialog() == DialogResult.OK)
+			AboutForm aboutBox = new AboutForm(darkMode);
+			aboutBox.Owner = this;
+			if (this.TopMost)
 			{
-
+				aboutBox.TopMost = true;
 			}
+			aboutBox.ShowDialog();
 		}
 
 		private void areaComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -276,6 +318,8 @@ namespace quick_screen_recorder
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			HotkeyManager.RegisterHotKey(this.Handle, 0, (int)HotkeyManager.KeyModifier.Alt, Keys.R.GetHashCode());
+
+			onTopBtn.Checked = Properties.Settings.Default.AlwaysOnTop;
 		}
 
 		protected override void WndProc(ref Message m)
@@ -304,7 +348,9 @@ namespace quick_screen_recorder
 
 		private void onTopCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
-			this.TopMost = onTopCheckBox.Checked;
+			this.TopMost = onTopBtn.Checked;
+			Properties.Settings.Default.AlwaysOnTop = onTopBtn.Checked;
+			Properties.Settings.Default.Save();
 		}
 
 		public void MuteRecorder(bool b)
@@ -330,6 +376,22 @@ namespace quick_screen_recorder
 			{
 				inputDeviceComboBox.Items.Add(WaveIn.GetCapabilities(i).ProductName);
 			}
+		}
+
+		private void settingsBtn_Click(object sender, EventArgs e)
+		{
+			SettingsForm settingsBox = new SettingsForm(darkMode);
+			settingsBox.Owner = this;
+			if (this.TopMost)
+			{
+				settingsBox.TopMost = true;
+			}
+			settingsBox.ShowDialog();
+		}
+
+		private void inputDeviceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			separateAudioCheckBox.Enabled = inputDeviceComboBox.SelectedIndex != 0;
 		}
 	}
 }

@@ -9,12 +9,14 @@ namespace quick_screen_recorder
 {
 	class ThemeManager
 	{
-		public static Color MainColorDark = Color.Black;
-		public static Color BackColorDark = Color.FromArgb(32, 32, 32);
-		public static Color SecondColorDark = Color.FromArgb(56, 56, 56);
-		public static Color AccentColorDark = Color.FromArgb(73, 169, 207);
+		public static Color DarkMainColor = Color.Black;
+		public static Color DarkBackColor = Color.FromArgb(32, 32, 32);
+		public static Color DarkSecondColor = Color.FromArgb(56, 56, 56);
+
+		public static Color LightBackColor = Color.White;
 
 		public static Color BorderColor = Color.FromArgb(100, 100, 100);
+		public static Color AccentColor = Color.FromArgb(0, 120, 215);
 
 		private enum WindowCompositionAttribute
 		{
@@ -140,10 +142,10 @@ namespace quick_screen_recorder
 		{
 			GroupBox box = (GroupBox)sender;
 
-			SolidBrush brush = new SolidBrush(ThemeManager.SecondColorDark);
+			SolidBrush brush = new SolidBrush(ThemeManager.DarkSecondColor);
 			Pen pen = new Pen(brush, 1);
 
-			p.Graphics.Clear(ThemeManager.BackColorDark);
+			p.Graphics.Clear(ThemeManager.DarkBackColor);
 
 			p.Graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
 			p.Graphics.DrawString(box.Text, box.Font, Brushes.White, -2, -3);
