@@ -46,5 +46,41 @@ namespace quick_screen_recorder.Properties {
                 this["AlwaysOnTop"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int QualityIndex {
+            get {
+                return ((int)(this["QualityIndex"]));
+            }
+            set {
+                this["QualityIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CaptureCursor {
+            get {
+                return ((bool)(this["CaptureCursor"]));
+            }
+            set {
+                this["CaptureCursor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideTaskbar {
+            get {
+                return ((bool)(this["HideTaskbar"]));
+            }
+            set {
+                this["HideTaskbar"] = value;
+            }
+        }
     }
 }

@@ -24,6 +24,11 @@ namespace quick_screen_recorder
 			videoLabel.Text = string.Format(videoLabel.Text, videoStr);
 			audioLabel.Text = string.Format(audioLabel.Text, audioStr);
 
+			if (audioStr == "None")
+			{
+				muteCheckBox.Enabled = false;
+			}
+
 			if (darkMode)
 			{
 				this.ForeColor = Color.White;
@@ -31,6 +36,8 @@ namespace quick_screen_recorder
 
 				stopButton.BackColor = ThemeManager.DarkSecondColor;
 				stopButton.Image = Properties.Resources.white_stop;
+
+				muteCheckBox.SetDarkMode(true);
 			}
 		}
 
@@ -113,6 +120,7 @@ namespace quick_screen_recorder
 
 		private void muteCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
+			Console.WriteLine("a");
 			(this.Owner as MainForm).MuteRecorder(muteCheckBox.Checked);
 		}
 	}

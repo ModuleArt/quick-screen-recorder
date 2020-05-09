@@ -57,7 +57,10 @@ namespace quick_screen_recorder
 		protected override void OnDrawItem(DrawItemEventArgs e)
 		{
 			e.DrawBackground();
-			e.Graphics.DrawString(this.Items[e.Index].ToString(), this.Font, new SolidBrush(this.ForeColor), e.Bounds.X, e.Bounds.Y);
+			if (e.Index != -1)
+			{
+				e.Graphics.DrawString(this.Items[e.Index].ToString(), this.Font, new SolidBrush(this.ForeColor), e.Bounds.X, e.Bounds.Y);
+			}
 		}
 	}
 }

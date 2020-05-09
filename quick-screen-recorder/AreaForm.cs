@@ -18,7 +18,10 @@ namespace quick_screen_recorder
 		private Point startPos;
 		private Size curSize;
 
-		System.Timers.Timer resizeTimer = new System.Timers.Timer();
+		private System.Timers.Timer resizeTimer = new System.Timers.Timer();
+
+		private int maxWidth = 4096;
+		private int maxHeight = 4096;
 
 		public AreaForm()
 		{
@@ -36,8 +39,11 @@ namespace quick_screen_recorder
 				int newWidth = curSize.Width + curPos.X - startPos.X;
 				int newHeight = curSize.Height + curPos.Y - startPos.Y;
 
-				(this.Owner as MainForm).SetAreaWidth(newWidth - 2);
-				(this.Owner as MainForm).SetAreaHeight(newHeight - 2);
+				if (newWidth > 4096) newWidth = 4096;
+				if (newHeight > 4096) newHeight = 4096;
+
+				(this.Owner as MainForm).SetAreaWidth(newWidth);
+				(this.Owner as MainForm).SetAreaHeight(newHeight);
 			}));
 		}
 
@@ -77,11 +83,29 @@ namespace quick_screen_recorder
 		private void AreaForm_SizeChanged(object sender, EventArgs e)
 		{
 			this.Refresh();
+			(this.Owner as MainForm).SetMaximumX(maxWidth - this.Width);
+			(this.Owner as MainForm).SetMaximumY(maxHeight - this.Height);
 		}
 
 		private void AreaForm_LocationChanged(object sender, EventArgs e)
 		{
-			sizeBtn.Text = "X:" + (this.Location.X + 1) + "\nY:" + (this.Location.Y + 1);
+			(this.Owner as MainForm).SetAreaX(this.Left);
+			(this.Owner as MainForm).SetAreaY(this.Top);
+		}
+
+		public void SetMaximumArea(int maxW, int maxH)
+		{
+			maxWidth = maxW;
+			maxHeight = maxH;
+		}
+
+		private void AreaForm_ResizeEnd(object sender, EventArgs e)
+		{
+			if (this.Left < 0) this.Left = 0;
+			if (this.Top < 0) this.Top = 0;
+
+			if (this.Left + this.Width > maxWidth) this.Left = maxWidth - this.Width;
+			if (this.Top + this.Height > maxHeight) this.Top = maxHeight - this.Height;
 		}
 	}
 }

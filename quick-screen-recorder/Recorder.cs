@@ -61,7 +61,7 @@ namespace quick_screen_recorder
         public bool Mute = false;
 
         public Recorder(string filePath, 
-            int quality, int x, int y, int width, int height, bool captureCursor, 
+            int quality, int x, int y, int width, int height, bool captureCursor,
             int inputSourceIndex, bool separateAudio)
         {
             this.x = x;
@@ -76,8 +76,16 @@ namespace quick_screen_recorder
                 EmitIndex1 = true,
             };
 
-            videoStream = writer.AddMotionJpegVideoStream(width, height, quality);
-            videoStream.Name = "Quick Screen Recorder - Video stream";
+            if (quality == 0)
+            {
+                videoStream = writer.AddUncompressedVideoStream(width, height);
+                videoStream.Name = "Quick Screen Recorder - Motion JPEG video stream";
+            }
+            else
+            {
+                videoStream = writer.AddMotionJpegVideoStream(width, height, quality);
+                videoStream.Name = "Quick Screen Recorder - Motion JPEG video stream";
+            }
 
             if (inputSourceIndex >= 0)
             {

@@ -37,7 +37,7 @@
 			this.audioLabel = new System.Windows.Forms.Label();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.volumeLabel = new System.Windows.Forms.Label();
-			this.muteCheckBox = new System.Windows.Forms.CheckBox();
+			this.muteCheckBox = new quick_screen_recorder.CustomCheckBox();
 			this.SuspendLayout();
 			// 
 			// timeLabel
@@ -111,8 +111,7 @@
 			// 
 			// muteCheckBox
 			// 
-			this.muteCheckBox.AutoSize = true;
-			this.muteCheckBox.Location = new System.Drawing.Point(166, 125);
+			this.muteCheckBox.Location = new System.Drawing.Point(166, 127);
 			this.muteCheckBox.Name = "muteCheckBox";
 			this.muteCheckBox.Size = new System.Drawing.Size(99, 19);
 			this.muteCheckBox.TabIndex = 29;
@@ -124,7 +123,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(274, 151);
+			this.ClientSize = new System.Drawing.Size(274, 152);
 			this.Controls.Add(this.muteCheckBox);
 			this.Controls.Add(this.volumeLabel);
 			this.Controls.Add(this.progressBar1);
@@ -156,6 +155,6 @@
 		private System.Windows.Forms.Label audioLabel;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.Windows.Forms.Label volumeLabel;
-		private System.Windows.Forms.CheckBox muteCheckBox;
+		private CustomCheckBox muteCheckBox;
 	}
 }
