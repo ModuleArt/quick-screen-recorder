@@ -10,6 +10,8 @@ namespace quick_screen_recorder
 	{
 		private bool darkMode = false;
 		private string darkText;
+		private bool hovered = false;
+		private bool pressed = false;
 
 		public CustomCheckBox()
 		{
@@ -17,7 +19,36 @@ namespace quick_screen_recorder
 			{
 				SetStyle(ControlStyles.UserPaint, true);
 				this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+				this.MouseEnter += CustomCheckBox_MouseEnter;
+				this.MouseLeave += CustomCheckBox_MouseLeave;
+				this.MouseDown += CustomCheckBox_MouseDown;
+				this.MouseUp += CustomCheckBox_MouseUp;
 			}
+		}
+
+		private void CustomCheckBox_MouseUp(object sender, MouseEventArgs e)
+		{
+			pressed = false;
+			this.Refresh();
+		}
+
+		private void CustomCheckBox_MouseDown(object sender, MouseEventArgs e)
+		{
+			pressed = true;
+			this.Refresh();
+		}
+
+		private void CustomCheckBox_MouseLeave(object sender, EventArgs e)
+		{
+			hovered = false;
+			this.Refresh();
+		}
+
+		private void CustomCheckBox_MouseEnter(object sender, EventArgs e)
+		{
+			hovered = true;
+			this.Refresh();
 		}
 
 		public void SetDarkMode(bool dark)
@@ -33,12 +64,27 @@ namespace quick_screen_recorder
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			base.OnPaint(e);
-
 			if (darkMode)
 			{
-				e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkSecondColor), new Rectangle(0, 2, 13, 13));
+				e.Graphics.Clear(this.BackColor);
 
+				if (this.pressed)
+				{
+					e.Graphics.FillRectangle(new SolidBrush(ThemeManager.PressedColor), new Rectangle(0, 2, 13, 13));
+				}
+				else
+				{
+					if (this.hovered)
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkHoverColor), new Rectangle(0, 2, 13, 13));
+					}
+					else
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkSecondColor), new Rectangle(0, 2, 13, 13));
+					}
+				}
+
+				
 				ControlPaint.DrawBorder(e.Graphics, new Rectangle(0, 2, 13, 13), ThemeManager.BorderColor, ButtonBorderStyle.Solid);
 
 				if (this.Checked)
@@ -66,6 +112,10 @@ namespace quick_screen_recorder
 				{
 					e.Graphics.DrawString(darkText, this.Font, new SolidBrush(ThemeManager.BorderColor), 17, 0);
 				}
+			}
+			else
+			{
+				base.OnPaint(e);
 			}
 		}
 	}

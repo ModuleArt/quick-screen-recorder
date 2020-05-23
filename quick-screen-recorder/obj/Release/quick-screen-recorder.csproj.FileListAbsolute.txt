@@ -4,7 +4,6 @@ D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\quick
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\SharpAvi.dll
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\SharpAvi.xml
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick-screen-recorder.csprojAssemblyReference.cache
-D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AboutBox1.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AreaForm.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.MainForm.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.Properties.Resources.resources
@@ -15,3 +14,8 @@ D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\NAudio.dll
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\NAudio.xml
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.StopForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\Octokit.dll
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AboutForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.DownloadForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.SettingsForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.UpdateForm.resources

@@ -7,13 +7,27 @@ namespace quick_screen_recorder
 	class CustomComboBox : ComboBox
 	{
 		private bool darkMode = false;
-		private string text = "";
+		private bool hovered = false;
 
 		public CustomComboBox()
 		{
 			SetStyle(ControlStyles.UserPaint, true);
 			this.DrawMode = DrawMode.OwnerDrawFixed;
-			this.text = Text;
+
+			this.MouseEnter += CustomComboBox_MouseEnter;
+			this.MouseLeave += CustomComboBox_MouseLeave;
+		}
+
+		private void CustomComboBox_MouseLeave(object sender, System.EventArgs e)
+		{
+			hovered = false;
+			this.Refresh();
+		}
+
+		private void CustomComboBox_MouseEnter(object sender, System.EventArgs e)
+		{
+			hovered = true;
+			this.Refresh();
 		}
 
 		public void SetDarkMode(bool dark)
@@ -38,7 +52,22 @@ namespace quick_screen_recorder
 				e.Graphics.Clear(ThemeManager.LightBackColor);
 			}
 			
-			e.Graphics.FillRectangle(new SolidBrush(this.BackColor), 0, 0, this.Width, this.Height - 2);
+			if (this.hovered)
+			{
+				if (darkMode)
+				{
+					e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkHoverColor), 0, 0, this.Width, this.Height - 2);
+				}
+				else
+				{
+					e.Graphics.FillRectangle(new SolidBrush(ThemeManager.LightHoverColor), 0, 0, this.Width, this.Height - 2);
+				}
+			}
+			else
+			{
+				e.Graphics.FillRectangle(new SolidBrush(this.BackColor), 0, 0, this.Width, this.Height - 2);
+			}
+			
 			Rectangle newBounds = new Rectangle(this.ClientRectangle.X, this.ClientRectangle.Y, this.ClientRectangle.Width, this.ClientRectangle.Height - 1);
 			ControlPaint.DrawBorder(e.Graphics, newBounds, ThemeManager.BorderColor, ButtonBorderStyle.Solid);
 
@@ -59,7 +88,14 @@ namespace quick_screen_recorder
 			e.DrawBackground();
 			if (e.Index != -1)
 			{
-				e.Graphics.DrawString(this.Items[e.Index].ToString(), this.Font, new SolidBrush(this.ForeColor), e.Bounds.X, e.Bounds.Y);
+				if (!darkMode && (e.State & DrawItemState.Selected) == DrawItemState.Selected)
+				{
+					e.Graphics.DrawString(this.Items[e.Index].ToString(), this.Font, Brushes.White, e.Bounds.X, e.Bounds.Y);
+				}
+				else
+				{
+					e.Graphics.DrawString(this.Items[e.Index].ToString(), this.Font, new SolidBrush(this.ForeColor), e.Bounds.X, e.Bounds.Y);
+				}
 			}
 		}
 	}

@@ -48,8 +48,6 @@ namespace quick_screen_recorder
 				projectLink.LinkColor = ThemeManager.AccentColor;
 				licenseLink.LinkColor = ThemeManager.AccentColor;
 				issuesLink.LinkColor = ThemeManager.AccentColor;
-
-				okButton.BackColor = ThemeManager.DarkSecondColor;
 			}
 		}
 

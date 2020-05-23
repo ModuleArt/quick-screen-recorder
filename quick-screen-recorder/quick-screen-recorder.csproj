@@ -74,6 +74,12 @@
       <DependentUpon>AreaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Converter.cs" />
+    <Compile Include="CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomRadio.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -81,6 +87,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomNumericBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomToolStrip.cs">
@@ -144,6 +153,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StopForm.resx">
       <DependentUpon>StopForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rec.ico" />
+    <None Include="resources\imgs\light\white-preview.png" />
     <None Include="resources\imgs\light\white-settings.png" />
     <None Include="resources\imgs\light\white-ontop.png" />
     <None Include="resources\imgs\light\white-refresh.png" />

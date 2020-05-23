@@ -37,7 +37,6 @@
 			this.descriptionLabel = new System.Windows.Forms.Label();
 			this.developerLink = new System.Windows.Forms.LinkLabel();
 			this.projectLink = new System.Windows.Forms.LinkLabel();
-			this.okButton = new System.Windows.Forms.Button();
 			this.infoGroup = new System.Windows.Forms.GroupBox();
 			this.licenseLabel = new System.Windows.Forms.Label();
 			this.updatesLink = new System.Windows.Forms.LinkLabel();
@@ -138,21 +137,6 @@
 			this.aboutTooltip.SetToolTip(this.projectLink, "Open project page in browser");
 			this.projectLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.projectLink_LinkClicked);
 			// 
-			// okButton
-			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-			this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.okButton.Location = new System.Drawing.Point(9, 404);
-			this.okButton.Margin = new System.Windows.Forms.Padding(0);
-			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(256, 23);
-			this.okButton.TabIndex = 6;
-			this.okButton.Text = "Close";
-			this.okButton.UseVisualStyleBackColor = false;
-			// 
 			// infoGroup
 			// 
 			this.infoGroup.Controls.Add(this.licenseLabel);
@@ -234,13 +218,11 @@
 			// 
 			// AboutForm
 			// 
-			this.AcceptButton = this.okButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(274, 436);
+			this.ClientSize = new System.Drawing.Size(274, 404);
 			this.Controls.Add(this.pagesGroup);
 			this.Controls.Add(this.infoGroup);
-			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.logoPictureBox);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -273,7 +255,6 @@
 		private System.Windows.Forms.Label descriptionLabel;
 		private System.Windows.Forms.LinkLabel developerLink;
 		private System.Windows.Forms.LinkLabel projectLink;
-		private System.Windows.Forms.Button okButton;
 		private System.Windows.Forms.GroupBox infoGroup;
 		private System.Windows.Forms.LinkLabel issuesLink;
 		private System.Windows.Forms.LinkLabel updatesLink;

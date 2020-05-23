@@ -37,6 +37,8 @@ namespace quick_screen_recorder
 				stopButton.BackColor = ThemeManager.DarkSecondColor;
 				stopButton.Image = Properties.Resources.white_stop;
 
+				optionsGroup.Paint += ThemeManager.PaintDarkGroupBox;
+
 				muteCheckBox.SetDarkMode(true);
 			}
 		}

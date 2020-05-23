@@ -35,14 +35,14 @@ namespace quick_screen_recorder
         private bool captureCursor;
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct POINTAPI
+        public struct POINTAPI
         {
             public int x;
             public int y;
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct CURSORINFO
+        public struct CURSORINFO
         {
             public Int32 cbSize;
             public Int32 flags;
@@ -51,12 +51,12 @@ namespace quick_screen_recorder
         }
 
         [DllImport("user32.dll")]
-        static extern bool GetCursorInfo(out CURSORINFO pci);
+        public static extern bool GetCursorInfo(out CURSORINFO pci);
 
         [DllImport("user32.dll")]
-        static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
+        public static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
 
-        const Int32 CURSOR_SHOWING = 0x00000001;
+        public const Int32 CURSOR_SHOWING = 0x00000001;
 
         public bool Mute = false;
 

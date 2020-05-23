@@ -12,11 +12,18 @@ namespace quick_screen_recorder
 		public static Color DarkMainColor = Color.Black;
 		public static Color DarkBackColor = Color.FromArgb(32, 32, 32);
 		public static Color DarkSecondColor = Color.FromArgb(56, 56, 56);
+		public static Color DarkPaleColor = Color.FromArgb(0, 58, 105);
+		public static Color DarkHoverColor = Color.FromArgb(67, 67, 67);
 
-		public static Color LightBackColor = Color.White;
+		public static Color LightMainColor = Color.White;
+		public static Color LightBackColor = SystemColors.Control;
+		public static Color LightSecondColor = SystemColors.ControlLight;
+		public static Color LightPaleColor = Color.FromArgb(192, 216, 235);
+		public static Color LightHoverColor = Color.FromArgb(204, 204, 204);
 
 		public static Color BorderColor = Color.FromArgb(100, 100, 100);
 		public static Color AccentColor = Color.FromArgb(0, 120, 215);
+		public static Color PressedColor = Color.FromArgb(140, 140, 140);
 
 		private enum WindowCompositionAttribute
 		{
@@ -152,7 +159,7 @@ namespace quick_screen_recorder
 
 			p.Graphics.DrawLine(pen, 0, 20, 0, box.Height - 2); //left border
 			p.Graphics.DrawLine(pen, p.Graphics.MeasureString(box.Text, box.Font).Width + 6, 8, box.Width - 1, 8); //top border
-			p.Graphics.DrawLine(pen, box.Width - 1, 8, box.Width - 1, box.Height - 2);
+			p.Graphics.DrawLine(pen, box.Width - 1, 8, box.Width - 1, box.Height - 2); //right border
 			p.Graphics.DrawLine(pen, 0, box.Height - 2, box.Width - 1, box.Height - 2);
 		}
 	}

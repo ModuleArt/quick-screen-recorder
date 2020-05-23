@@ -5,6 +5,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace quick_screen_recorder
 {
@@ -31,62 +34,68 @@ namespace quick_screen_recorder
 			areaForm = new AreaForm();
 			areaForm.Owner = this;
 
-			folderTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
 			inputDeviceComboBox.SelectedIndex = 0;
 
 			RefreshScreens();
 			RefreshAudioDevices();
 
-			if (darkMode)
-			{
-				applyDarkTheme();
-			}
+			previewBtn.Checked = Properties.Settings.Default.Preview;
+			enabledPreview(previewBtn.Checked);
+
+			applyDarkTheme(darkMode);
 		}
 
-		private void applyDarkTheme()
+		private void applyDarkTheme(bool darkMode)
 		{
-			this.ForeColor = Color.White;
-			this.BackColor = ThemeManager.DarkBackColor;
+			if (darkMode)
+			{
+				this.ForeColor = Color.White;
+				this.BackColor = ThemeManager.DarkBackColor;
 
-			recButton.BackColor = ThemeManager.DarkSecondColor;
-			recButton.Image = Properties.Resources.white_record;
+				recButton.BackColor = ThemeManager.DarkSecondColor;
+				recButton.Image = Properties.Resources.white_record;
 
-			browseFolderBtn.BackColor = ThemeManager.DarkSecondColor;
+				//browseFolderBtn.BackColor = ThemeManager.DarkSecondColor;
+				
 
-			toolStrip1.SetDarkMode(true, false);
-			aboutBtn.Image = Properties.Resources.white_about;
-			onTopBtn.Image = Properties.Resources.white_ontop;
-			settingsBtn.Image = Properties.Resources.white_settings;
+				aboutBtn.Image = Properties.Resources.white_about;
+				onTopBtn.Image = Properties.Resources.white_ontop;
+				settingsBtn.Image = Properties.Resources.white_settings;
+				previewBtn.Image = Properties.Resources.white_preview;
 
-			fileNameTextBox.BackColor = ThemeManager.DarkSecondColor;
-			fileNameTextBox.ForeColor = Color.White;
+				fileNameTextBox.BackColor = ThemeManager.DarkSecondColor;
+				fileNameTextBox.ForeColor = Color.White;
 
-			folderTextBox.BackColor = ThemeManager.DarkSecondColor;
-			folderTextBox.ForeColor = Color.White;
+				folderTextBox.BackColor = ThemeManager.DarkSecondColor;
+				folderTextBox.ForeColor = Color.White;
 
-			generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
-			videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
-			audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
+				generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
+				videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
+				audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
 
-			qualityComboBox.SetDarkMode(true);
-			inputDeviceComboBox.SetDarkMode(true);
-			areaComboBox.SetDarkMode(true);
+				refreshAudioBtn.BackColor = ThemeManager.DarkSecondColor;
+				refreshAudioBtn.Image = Properties.Resources.white_refresh;
 
-			widthNumeric.SetDarkMode(true);
-			heightNumeric.SetDarkMode(true);
-			xNumeric.SetDarkMode(true);
-			yNumeric.SetDarkMode(true);
+				refreshScreensBtn.BackColor = ThemeManager.DarkSecondColor;
+				refreshScreensBtn.Image = Properties.Resources.white_refresh;
+			}
 
-			refreshAudioBtn.BackColor = ThemeManager.DarkSecondColor;
-			refreshAudioBtn.Image = Properties.Resources.white_refresh;
+			toolStrip1.SetDarkMode(darkMode, false);
 
-			refreshScreensBtn.BackColor = ThemeManager.DarkSecondColor;
-			refreshScreensBtn.Image = Properties.Resources.white_refresh;
+			browseFolderBtn.SetDarkMode(darkMode);
 
-			separateAudioCheckBox.SetDarkMode(true);
-			captureCursorCheckBox.SetDarkMode(true);
-			hideTaskbarCheckBox.SetDarkMode(true);
+			qualityComboBox.SetDarkMode(darkMode);
+			inputDeviceComboBox.SetDarkMode(darkMode);
+			areaComboBox.SetDarkMode(darkMode);
+
+			widthNumeric.SetDarkMode(darkMode);
+			heightNumeric.SetDarkMode(darkMode);
+			xNumeric.SetDarkMode(darkMode);
+			yNumeric.SetDarkMode(darkMode);
+
+			separateAudioCheckBox.SetDarkMode(darkMode);
+			captureCursorCheckBox.SetDarkMode(darkMode);
+			hideTaskbarCheckBox.SetDarkMode(darkMode);
 		}
 
 		public void SetAreaWidth(int w)
@@ -281,8 +290,8 @@ namespace quick_screen_recorder
 				int x = (int)xNumeric.Value;
 				int y = (int)yNumeric.Value;
 
-				recorder = new Recorder(path, 
-					quality, x, y, width, height, captureCursorCheckBox.Checked, 
+				recorder = new Recorder(path,
+					quality, x, y, width, height, captureCursorCheckBox.Checked,
 					inputSourceIndex, separateAudioCheckBox.Checked);
 				recorder.OnPeakVolumeChanged += Recorder_OnPeakVolumeChanged;
 
@@ -356,10 +365,10 @@ namespace quick_screen_recorder
 			{
 				areaForm.Show();
 
-				widthNumeric.Text = areaForm.Width.ToString();
-				heightNumeric.Text = areaForm.Height.ToString();
-				xNumeric.Text = areaForm.Left.ToString();
-				yNumeric.Text = areaForm.Top.ToString();
+				widthNumeric.Value = areaForm.Width;
+				heightNumeric.Value = areaForm.Height;
+				xNumeric.Value = areaForm.Left;
+				yNumeric.Value = areaForm.Top;
 
 				widthNumeric.Enabled = true;
 				heightNumeric.Enabled = true;
@@ -383,10 +392,10 @@ namespace quick_screen_recorder
 				{
 					if (areaComboBox.SelectedIndex == areaComboBox.Items.Count - 2)
 					{
-						widthNumeric.Text = SystemInformation.VirtualScreen.Width.ToString();
-						heightNumeric.Text = SystemInformation.VirtualScreen.Height.ToString();
-						xNumeric.Text = SystemInformation.VirtualScreen.Left.ToString();
-						yNumeric.Text = SystemInformation.VirtualScreen.Top.ToString();
+						widthNumeric.Value = SystemInformation.VirtualScreen.Width;
+						heightNumeric.Value = SystemInformation.VirtualScreen.Height;
+						xNumeric.Value = SystemInformation.VirtualScreen.Left;
+						yNumeric.Value = SystemInformation.VirtualScreen.Top;
 
 						hideTaskbarCheckBox.Enabled = false;
 					}
@@ -396,17 +405,17 @@ namespace quick_screen_recorder
 
 						if (hideTaskbarCheckBox.Checked)
 						{
-							widthNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Width.ToString();
-							heightNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Height.ToString();
-							xNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.X.ToString();
-							yNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Y.ToString();
+							widthNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Width;
+							heightNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Height;
+							xNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.X;
+							yNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Y;
 						}
 						else
 						{
-							widthNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Width.ToString();
-							heightNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Height.ToString();
-							xNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.X.ToString();
-							yNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Y.ToString();
+							widthNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Width;
+							heightNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Height;
+							xNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.X;
+							yNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Y;
 						}
 					}
 				}
@@ -414,17 +423,17 @@ namespace quick_screen_recorder
 				{
 					if (hideTaskbarCheckBox.Checked)
 					{
-						widthNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Width.ToString();
-						heightNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Height.ToString();
-						xNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.X.ToString();
-						yNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Y.ToString();
+						widthNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Width;
+						heightNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Height;
+						xNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.X;
+						yNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].WorkingArea.Y;
 					}
 					else
 					{
-						widthNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Width.ToString();
-						heightNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Height.ToString();
-						xNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.X.ToString();
-						yNumeric.Text = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Y.ToString();
+						widthNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Width;
+						heightNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Height;
+						xNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.X;
+						yNumeric.Value = Screen.AllScreens[areaComboBox.SelectedIndex].Bounds.Y;
 					}
 
 					hideTaskbarCheckBox.Enabled = true;
@@ -456,6 +465,74 @@ namespace quick_screen_recorder
 			qualityComboBox.SelectedIndex = Properties.Settings.Default.QualityIndex;
 			captureCursorCheckBox.Checked = Properties.Settings.Default.CaptureCursor;
 			hideTaskbarCheckBox.Checked = Properties.Settings.Default.HideTaskbar;
+
+			if (Properties.Settings.Default.Folder == string.Empty)
+			{
+				folderTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+			}
+			else
+			{
+				folderTextBox.Text = Properties.Settings.Default.Folder;
+			}
+
+			Task task = new Task(() =>
+			{
+				while (true)
+				{
+					Preview();
+					Thread.Sleep(100);
+				}
+			});
+
+			task.Start();
+		}
+
+		private void Preview()
+		{
+			if (this.Visible && this.Width > 700)
+			{
+				try
+				{
+					int width = (int)widthNumeric.Value;
+					int height = (int)heightNumeric.Value;
+					int x = (int)xNumeric.Value;
+					int y = (int)yNumeric.Value;
+
+					Bitmap BMP = new Bitmap(width, height);
+					using (var g = Graphics.FromImage(BMP))
+					{
+						g.CopyFromScreen(new Point(x, y), Point.Empty, new Size(width, height), CopyPixelOperation.SourceCopy);
+
+						if (captureCursorCheckBox.Checked)
+						{
+							Recorder.CURSORINFO pci;
+							pci.cbSize = Marshal.SizeOf(typeof(Recorder.CURSORINFO));
+
+							if (Recorder.GetCursorInfo(out pci))
+							{
+								if (pci.flags == Recorder.CURSOR_SHOWING)
+								{
+									Recorder.DrawIcon(g.GetHdc(), pci.ptScreenPos.x, pci.ptScreenPos.y, pci.hCursor);
+									g.ReleaseHdc();
+								}
+							}
+						}
+
+						g.Flush();
+					}
+
+					if (previewBox.Image != null)
+					{
+						previewBox.Image.Dispose();
+						previewBox.Image = null;
+					}
+					previewBox.Image = BMP;
+				}
+				catch
+				{
+
+				}
+			}
 		}
 
 		protected override void WndProc(ref Message m)
@@ -485,6 +562,7 @@ namespace quick_screen_recorder
 		private void onTopCheckBox_CheckedChanged(object sender, EventArgs e)
 		{
 			this.TopMost = onTopBtn.Checked;
+			areaForm.TopMost = onTopBtn.Checked;
 			Properties.Settings.Default.AlwaysOnTop = onTopBtn.Checked;
 			Properties.Settings.Default.Save();
 		}
@@ -541,8 +619,6 @@ namespace quick_screen_recorder
 
 			widthNumeric.Maximum = SystemInformation.VirtualScreen.Width;
 			heightNumeric.Maximum = SystemInformation.VirtualScreen.Height;
-			//xNumeric.Maximum = SystemInformation.VirtualScreen.Width - areaForm.MinimumSize.Width;
-			//yNumeric.Maximum = SystemInformation.VirtualScreen.Height - areaForm.MinimumSize.Height;
 
 			areaForm.SetMaximumArea(SystemInformation.VirtualScreen.Width, SystemInformation.VirtualScreen.Height);
 		}
@@ -601,6 +677,92 @@ namespace quick_screen_recorder
 		{
 			Properties.Settings.Default.QualityIndex = qualityComboBox.SelectedIndex;
 			Properties.Settings.Default.Save();
+		}
+
+		private void enabledPreview(bool b)
+		{
+			if (previewBtn.Checked)
+			{
+				this.Width = 820;
+			}
+			else
+			{
+				this.Width = 374;
+
+				if (previewBox.Image != null)
+				{
+					previewBox.Image.Dispose();
+					previewBox.Image = null;
+				}
+			}
+		}
+
+		private void previewBtn_CheckedChanged(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.Preview = previewBtn.Checked;
+			Properties.Settings.Default.Save();
+
+			enabledPreview(previewBtn.Checked);
+		}
+
+		private void folderTextBox_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+			{
+				e.Effect = DragDropEffects.Copy;
+			}
+			else
+			{
+				e.Effect = DragDropEffects.None;
+			}
+		}
+
+		private void folderTextBox_DragDrop(object sender, DragEventArgs e)
+		{
+			string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+
+			FileAttributes attr = File.GetAttributes(FileList[0]);
+
+			if (attr.HasFlag(FileAttributes.Directory))
+			{
+				folderTextBox.Text = FileList[0];
+			}
+			else
+			{
+				folderTextBox.Text = Path.GetDirectoryName(FileList[0]);
+			}
+		}
+
+		private void folderTextBox_TextChanged(object sender, EventArgs e)
+		{
+			Properties.Settings.Default.Folder = folderTextBox.Text;
+			Properties.Settings.Default.Save();
+		}
+
+		private void MainForm_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control)
+			{
+				if (e.KeyCode == Keys.P)
+				{
+					previewBtn.PerformClick();
+				}
+				else if (e.KeyCode == Keys.T)
+				{
+					onTopBtn.PerformClick();
+				}
+				else if (e.KeyCode == Keys.Oemcomma)
+				{
+					settingsBtn.PerformClick();
+				}
+			}
+			else
+			{
+				if (e.KeyCode == Keys.F1)
+				{
+					aboutBtn.PerformClick();
+				}
+			}
 		}
 	}
 }

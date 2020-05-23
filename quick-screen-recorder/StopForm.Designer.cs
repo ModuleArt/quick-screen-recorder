@@ -38,13 +38,15 @@
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.volumeLabel = new System.Windows.Forms.Label();
 			this.muteCheckBox = new quick_screen_recorder.CustomCheckBox();
+			this.optionsGroup = new System.Windows.Forms.GroupBox();
+			this.optionsGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// timeLabel
 			// 
 			this.timeLabel.AutoSize = true;
 			this.timeLabel.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.timeLabel.Location = new System.Drawing.Point(153, 18);
+			this.timeLabel.Location = new System.Drawing.Point(159, 18);
 			this.timeLabel.Name = "timeLabel";
 			this.timeLabel.Size = new System.Drawing.Size(100, 22);
 			this.timeLabel.TabIndex = 23;
@@ -74,7 +76,7 @@
 			// videoLabel
 			// 
 			this.videoLabel.AutoSize = true;
-			this.videoLabel.Location = new System.Drawing.Point(12, 58);
+			this.videoLabel.Location = new System.Drawing.Point(6, 28);
 			this.videoLabel.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
 			this.videoLabel.Name = "videoLabel";
 			this.videoLabel.Size = new System.Drawing.Size(57, 15);
@@ -84,7 +86,7 @@
 			// audioLabel
 			// 
 			this.audioLabel.AutoSize = true;
-			this.audioLabel.Location = new System.Drawing.Point(12, 82);
+			this.audioLabel.Location = new System.Drawing.Point(6, 52);
 			this.audioLabel.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
 			this.audioLabel.Name = "audioLabel";
 			this.audioLabel.Size = new System.Drawing.Size(59, 15);
@@ -93,16 +95,16 @@
 			// 
 			// progressBar1
 			// 
-			this.progressBar1.Location = new System.Drawing.Point(65, 111);
+			this.progressBar1.Location = new System.Drawing.Point(59, 80);
 			this.progressBar1.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
 			this.progressBar1.Name = "progressBar1";
-			this.progressBar1.Size = new System.Drawing.Size(200, 8);
+			this.progressBar1.Size = new System.Drawing.Size(201, 8);
 			this.progressBar1.TabIndex = 27;
 			// 
 			// volumeLabel
 			// 
 			this.volumeLabel.AutoSize = true;
-			this.volumeLabel.Location = new System.Drawing.Point(12, 106);
+			this.volumeLabel.Location = new System.Drawing.Point(6, 76);
 			this.volumeLabel.Margin = new System.Windows.Forms.Padding(3, 9, 3, 0);
 			this.volumeLabel.Name = "volumeLabel";
 			this.volumeLabel.Size = new System.Drawing.Size(50, 15);
@@ -111,7 +113,7 @@
 			// 
 			// muteCheckBox
 			// 
-			this.muteCheckBox.Location = new System.Drawing.Point(166, 127);
+			this.muteCheckBox.Location = new System.Drawing.Point(161, 96);
 			this.muteCheckBox.Name = "muteCheckBox";
 			this.muteCheckBox.Size = new System.Drawing.Size(99, 19);
 			this.muteCheckBox.TabIndex = 29;
@@ -119,16 +121,27 @@
 			this.muteCheckBox.UseVisualStyleBackColor = true;
 			this.muteCheckBox.CheckedChanged += new System.EventHandler(this.muteCheckBox_CheckedChanged);
 			// 
+			// optionsGroup
+			// 
+			this.optionsGroup.Controls.Add(this.videoLabel);
+			this.optionsGroup.Controls.Add(this.muteCheckBox);
+			this.optionsGroup.Controls.Add(this.audioLabel);
+			this.optionsGroup.Controls.Add(this.progressBar1);
+			this.optionsGroup.Controls.Add(this.volumeLabel);
+			this.optionsGroup.Location = new System.Drawing.Point(9, 58);
+			this.optionsGroup.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
+			this.optionsGroup.Name = "optionsGroup";
+			this.optionsGroup.Size = new System.Drawing.Size(266, 123);
+			this.optionsGroup.TabIndex = 30;
+			this.optionsGroup.TabStop = false;
+			this.optionsGroup.Text = "Options";
+			// 
 			// StopForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.ClientSize = new System.Drawing.Size(274, 152);
-			this.Controls.Add(this.muteCheckBox);
-			this.Controls.Add(this.volumeLabel);
-			this.Controls.Add(this.progressBar1);
-			this.Controls.Add(this.audioLabel);
-			this.Controls.Add(this.videoLabel);
+			this.ClientSize = new System.Drawing.Size(284, 189);
+			this.Controls.Add(this.optionsGroup);
 			this.Controls.Add(this.stopButton);
 			this.Controls.Add(this.timeLabel);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,6 +154,8 @@
 			this.TopMost = true;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StopForm_FormClosing);
 			this.Load += new System.EventHandler(this.StopForm_Load);
+			this.optionsGroup.ResumeLayout(false);
+			this.optionsGroup.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -156,5 +171,6 @@
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.Windows.Forms.Label volumeLabel;
 		private CustomCheckBox muteCheckBox;
+		private System.Windows.Forms.GroupBox optionsGroup;
 	}
 }

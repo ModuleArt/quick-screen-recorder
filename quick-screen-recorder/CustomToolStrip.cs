@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace quick_screen_recorder
@@ -12,7 +7,7 @@ namespace quick_screen_recorder
 	{
 		public CustomToolStrip()
 		{
-
+			
 		}
 
 		public void SetDarkMode(bool dark, bool titlebar)
@@ -27,15 +22,15 @@ namespace quick_screen_recorder
 				{
 					this.BackColor = ThemeManager.DarkBackColor;
 				}
-
-				this.Renderer = new CustomToolStripSystemRenderer(dark);
 			}
+
+			this.Renderer = new CustomToolStripSystemRenderer(dark);
 		}
 	}
 
 	internal class CustomToolStripSystemRenderer : ToolStripSystemRenderer
 	{
-		private bool darkMode;
+		private bool darkMode = false;
 
 		public CustomToolStripSystemRenderer(bool darkMode)
 		{
@@ -46,11 +41,34 @@ namespace quick_screen_recorder
 
 		protected override void OnRenderButtonBackground(ToolStripItemRenderEventArgs e)
 		{
-			base.OnRenderButtonBackground(e);
-
-			if (darkMode && (e.Item as ToolStripButton).Checked)
+			if ((e.Item as ToolStripButton).Checked)
 			{
-				e.Graphics.DrawRectangle(new Pen(ThemeManager.AccentColor), new Rectangle(1, 1, e.Item.Width - 4, e.Item.Height - 5));
+				if ((e.Item as ToolStripButton).Pressed)
+				{
+					if (darkMode)
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkPaleColor), new Rectangle(1, 0, e.Item.Width - 1, e.Item.Height - 3));
+					}
+					else
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.LightPaleColor), new Rectangle(1, 0, e.Item.Width - 1, e.Item.Height - 3));
+					}
+
+					e.Graphics.DrawRectangle(new Pen(ThemeManager.AccentColor), new Rectangle(1, 0, e.Item.Width - 2, e.Item.Height - 3));
+				}
+				else
+				{
+					if (darkMode)
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.DarkPaleColor), new Rectangle(0, 0, e.Item.Width - 2, e.Item.Height - 3));
+					}
+					else
+					{
+						e.Graphics.FillRectangle(new SolidBrush(ThemeManager.LightPaleColor), new Rectangle(0, 0, e.Item.Width - 2, e.Item.Height - 3));
+					}
+
+					e.Graphics.DrawRectangle(new Pen(ThemeManager.AccentColor), new Rectangle(0, 0, e.Item.Width - 2, e.Item.Height - 3));
+				}
 			}
 		}
 	}
