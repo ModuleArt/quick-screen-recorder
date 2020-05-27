@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickLibrary;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -37,10 +38,10 @@ namespace quick_screen_recorder
 				stopButton.BackColor = ThemeManager.DarkSecondColor;
 				stopButton.Image = Properties.Resources.white_stop;
 
-				optionsGroup.Paint += ThemeManager.PaintDarkGroupBox;
-
 				muteCheckBox.SetDarkMode(true);
 			}
+
+			optionsGroup.SetDarkMode(darkMode);
 		}
 
 		private void mainTimer_Tick(object sender, EventArgs e)

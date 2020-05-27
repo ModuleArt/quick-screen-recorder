@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime.InteropServices;
+using QuickLibrary;
 
 namespace quick_screen_recorder
 {
@@ -55,9 +56,6 @@ namespace quick_screen_recorder
 				recButton.BackColor = ThemeManager.DarkSecondColor;
 				recButton.Image = Properties.Resources.white_record;
 
-				//browseFolderBtn.BackColor = ThemeManager.DarkSecondColor;
-				
-
 				aboutBtn.Image = Properties.Resources.white_about;
 				onTopBtn.Image = Properties.Resources.white_ontop;
 				settingsBtn.Image = Properties.Resources.white_settings;
@@ -69,10 +67,6 @@ namespace quick_screen_recorder
 				folderTextBox.BackColor = ThemeManager.DarkSecondColor;
 				folderTextBox.ForeColor = Color.White;
 
-				generalGroup.Paint += ThemeManager.PaintDarkGroupBox;
-				videoGroup.Paint += ThemeManager.PaintDarkGroupBox;
-				audioGroup.Paint += ThemeManager.PaintDarkGroupBox;
-
 				refreshAudioBtn.BackColor = ThemeManager.DarkSecondColor;
 				refreshAudioBtn.Image = Properties.Resources.white_refresh;
 
@@ -80,19 +74,18 @@ namespace quick_screen_recorder
 				refreshScreensBtn.Image = Properties.Resources.white_refresh;
 			}
 
+			generalGroup.SetDarkMode(darkMode);
+			videoGroup.SetDarkMode(darkMode);
+			audioGroup.SetDarkMode(darkMode);
 			toolStrip1.SetDarkMode(darkMode, false);
-
 			browseFolderBtn.SetDarkMode(darkMode);
-
 			qualityComboBox.SetDarkMode(darkMode);
 			inputDeviceComboBox.SetDarkMode(darkMode);
 			areaComboBox.SetDarkMode(darkMode);
-
 			widthNumeric.SetDarkMode(darkMode);
 			heightNumeric.SetDarkMode(darkMode);
 			xNumeric.SetDarkMode(darkMode);
 			yNumeric.SetDarkMode(darkMode);
-
 			separateAudioCheckBox.SetDarkMode(darkMode);
 			captureCursorCheckBox.SetDarkMode(darkMode);
 			hideTaskbarCheckBox.SetDarkMode(darkMode);
@@ -182,49 +175,6 @@ namespace quick_screen_recorder
 		public void SetMaximumY(int maxY)
 		{
 			yNumeric.Maximum = maxY;
-		}
-
-		public async void checkForUpdates(bool showUpToDateDialog)
-		{
-			try
-			{
-				UpdateChecker checker = new UpdateChecker("ModuleArt", "quick-screen-recorder");
-
-				bool update = await checker.CheckUpdate();
-
-				if (update == false)
-				{
-					if (showUpToDateDialog)
-					{
-						MessageBox.Show("Application is up to date", "Updator", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					}
-				}
-				else
-				{
-					UpdateForm updateDialog = new UpdateForm(checker, "Quick Screen Recorder", darkMode);
-					updateDialog.TopMost = this.TopMost;
-
-					DialogResult result = updateDialog.ShowDialog();
-					if (result == DialogResult.Yes)
-					{
-						DownloadForm downloadBox = new DownloadForm(checker.GetAssetUrl("QuickScreenRecorder-Setup.msi"), darkMode);
-						downloadBox.Owner = this;
-						downloadBox.TopMost = this.TopMost;
-						downloadBox.ShowDialog();
-					}
-					else
-					{
-						updateDialog.Dispose();
-					}
-				}
-			}
-			catch
-			{
-				if (showUpToDateDialog)
-				{
-					MessageBox.Show("Connection error", "Updator", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
-			}
 		}
 
 		private void recButton_Click(object sender, EventArgs e)
@@ -485,6 +435,11 @@ namespace quick_screen_recorder
 			});
 
 			task.Start();
+
+			if (Properties.Settings.Default.CheckForUpdates)
+			{
+				UpdateManager.checkForUpdates(false, darkMode, this.TopMost, "ModuleArt", "quick-screen-recorder", "Quick Screen Recorder", "QuickScreenRecorder-Setup.msi");
+			}
 		}
 
 		private void Preview()

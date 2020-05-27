@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickLibrary;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
@@ -39,16 +40,16 @@ namespace quick_screen_recorder
 			{
 				this.BackColor = ThemeManager.DarkBackColor;
 				this.ForeColor = Color.White;
-
-				infoGroup.Paint += ThemeManager.PaintDarkGroupBox;
-				pagesGroup.Paint += ThemeManager.PaintDarkGroupBox;
-
-				updatesLink.LinkColor = ThemeManager.AccentColor;
-				developerLink.LinkColor = ThemeManager.AccentColor;
-				projectLink.LinkColor = ThemeManager.AccentColor;
-				licenseLink.LinkColor = ThemeManager.AccentColor;
-				issuesLink.LinkColor = ThemeManager.AccentColor;
 			}
+
+			updatesLink.LinkColor = ThemeManager.AccentColor;
+			developerLink.LinkColor = ThemeManager.AccentColor;
+			projectLink.LinkColor = ThemeManager.AccentColor;
+			licenseLink.LinkColor = ThemeManager.AccentColor;
+			issuesLink.LinkColor = ThemeManager.AccentColor;
+
+			infoGroup.SetDarkMode(darkMode);
+			pagesGroup.SetDarkMode(darkMode);
 		}
 
 		private void developerLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -69,7 +70,7 @@ namespace quick_screen_recorder
 		private void updatesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			MainForm parent = (MainForm)this.Owner;
-			parent.checkForUpdates(true);
+			UpdateManager.checkForUpdates(true, darkMode, this.TopMost, "ModuleArt", "quick-screen-recorder", "Quick Screen Recorder", "QuickScreenRecorder-Setup.msi");
 			this.Close();
 		}
 

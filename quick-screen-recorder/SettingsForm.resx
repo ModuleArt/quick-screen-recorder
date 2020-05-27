@@ -117,4 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="winSoundBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAANNJREFUOE+1080KAVEYxvGzsLawlZSF3ICdcg1yA+7EDnE9dizsuARWiiwU2YmE
+        /zPjrfkoZ5Cnfs3M25zXnA/u38m9rl+lgEl4+3lqWOERPDl3xwnD4MmTFvZowxpUMcAVcxWSGeEMDTig
+        CcUarNGHGl3QRSwq5sPbWKxBBWP0oGkcEYu9mIzVpyhjixK0JrH4GsyggTsUkWrgm4IGvZ2CijdogH6l
+        DsUaaFdsEbUTqUWMpoENOoh+gW3jQgVfdJCWsAa6Zj5Ilp+OsuWnP1OGOPcEweA3O4Npp7MAAAAASUVO
+        RK5CYII=
+</value>
+  </data>
+  <data name="mixerBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAGRJREFUOE/NkVEKwDAIQ73/WTd2hK6GuZVUIWMf6wMpJpIK2lK06x1RNfApYO/l
+        xobuQQ4IkU054Ojlhr8jPFxtCpTfos9mpYBqU6AEOJkG2HhzGcBG9JU+wYZ6mZvMULXfMDsBEgwx/8L4
+        3JEAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

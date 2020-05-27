@@ -27,8 +27,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_780D7725D985B299C1DA08E29AF0FFBE"
+        "OwnerKey" = "8:_85D7539BB9D4423F8AB19F51EEFD1ACF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_85D7539BB9D4423F8AB19F51EEFD1ACF"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BDC28C40A18AEC2B8573214280BFD10B"
+        "OwnerKey" = "8:_780D7725D985B299C1DA08E29AF0FFBE"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -59,6 +71,18 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F6F8A97A00088C8B407DC6306F3DDA1B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_780D7725D985B299C1DA08E29AF0FFBE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BDC28C40A18AEC2B8573214280BFD10B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -230,6 +254,68 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_780D7725D985B299C1DA08E29AF0FFBE"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Octokit, Version=0.3.4.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_780D7725D985B299C1DA08E29AF0FFBE"
+                    {
+                    "Name" = "8:Octokit.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Octokit.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D598DEC863C249D2B9AC211BBDB1CCAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BDC28C40A18AEC2B8573214280BFD10B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_BDC28C40A18AEC2B8573214280BFD10B"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D598DEC863C249D2B9AC211BBDB1CCAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D08759ECA3B748AAA04474B66AAD2F4E"
             {
             "SourcePath" = "8:..\\quick-screen-recorder\\rec.ico"
@@ -357,15 +443,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Quick Screen Recorder"
-        "ProductCode" = "8:{853893A7-1D72-44E8-8A03-70719DE159AD}"
-        "PackageCode" = "8:{F586EE99-E23A-4D62-AAFC-95928BB435CD}"
+        "ProductCode" = "8:{C139FFFF-3799-43B3-8654-8CDFBFB09E95}"
+        "PackageCode" = "8:{0120B3E1-B397-42C8-B247-2EB60CF65E47}"
         "UpgradeCode" = "8:{3539F280-00D2-49B4-9B81-67651777E89C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.2.1"
         "Manufacturer" = "8:Module Art"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/ModuleArt/quick-screen-recorder/issues"
@@ -907,7 +993,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85D7539BB9D4423F8AB19F51EEFD1ACF"
             {
-            "SourcePath" = "8:..\\quick-screen-recorder\\obj\\Debug\\quick-screen-recorder.exe"
+            "SourcePath" = "8:..\\quick-screen-recorder\\obj\\Release\\quick-screen-recorder.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D598DEC863C249D2B9AC211BBDB1CCAE"

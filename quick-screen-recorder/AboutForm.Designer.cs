@@ -37,11 +37,11 @@
 			this.descriptionLabel = new System.Windows.Forms.Label();
 			this.developerLink = new System.Windows.Forms.LinkLabel();
 			this.projectLink = new System.Windows.Forms.LinkLabel();
-			this.infoGroup = new System.Windows.Forms.GroupBox();
+			this.infoGroup = new QuickLibrary.QlibGroupBox();
 			this.licenseLabel = new System.Windows.Forms.Label();
 			this.updatesLink = new System.Windows.Forms.LinkLabel();
 			this.issuesLink = new System.Windows.Forms.LinkLabel();
-			this.pagesGroup = new System.Windows.Forms.GroupBox();
+			this.pagesGroup = new QuickLibrary.QlibGroupBox();
 			this.licenseLink = new System.Windows.Forms.LinkLabel();
 			this.aboutTooltip = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -255,10 +255,10 @@
 		private System.Windows.Forms.Label descriptionLabel;
 		private System.Windows.Forms.LinkLabel developerLink;
 		private System.Windows.Forms.LinkLabel projectLink;
-		private System.Windows.Forms.GroupBox infoGroup;
+		private QuickLibrary.QlibGroupBox infoGroup;
 		private System.Windows.Forms.LinkLabel issuesLink;
 		private System.Windows.Forms.LinkLabel updatesLink;
-		private System.Windows.Forms.GroupBox pagesGroup;
+		private QuickLibrary.QlibGroupBox pagesGroup;
 		private System.Windows.Forms.Label licenseLabel;
 		private System.Windows.Forms.LinkLabel licenseLink;
 		private System.Windows.Forms.ToolTip aboutTooltip;

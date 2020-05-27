@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickLibrary;
+using System;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
@@ -7,16 +8,12 @@ namespace quick_screen_recorder
 {
 	partial class SettingsForm : Form
 	{
-		private bool darkMode;
-
 		public SettingsForm(bool darkMode)
 		{
 			if (darkMode)
 			{
 				this.HandleCreated += new EventHandler(ThemeManager.formHandleCreated);
 			}
-
-			this.darkMode = darkMode;
 
 			InitializeComponent();
 
@@ -27,20 +24,22 @@ namespace quick_screen_recorder
 
 				settingsTabs.BackTabColor = ThemeManager.DarkBackColor;
 				settingsTabs.BorderColor = ThemeManager.DarkSecondColor;
-				settingsTabs.ActiveColor = ThemeManager.AccentColor;
 				settingsTabs.HeaderColor = ThemeManager.DarkSecondColor;
 				settingsTabs.TextColor = Color.White;
 				settingsTabs.HorizontalLineColor = Color.Transparent;
 
 				mixerBtn.BackColor = ThemeManager.DarkSecondColor;
+				mixerBtn.Image = Properties.Resources.white_mixer;
 				winSoundBtn.BackColor = ThemeManager.DarkSecondColor;
-
-				systemThemeRadio.SetDarkMode(true);
-				darkThemeRadio.SetDarkMode(true);
-				lightThemeRadio.SetDarkMode(true);
-
-				updatesCheckBox.SetDarkMode(true);
+				winSoundBtn.Image = Properties.Resources.white_speaker;
 			}
+
+			settingsTabs.ActiveColor = ThemeManager.AccentColor;
+
+			systemThemeRadio.SetDarkMode(darkMode);
+			darkThemeRadio.SetDarkMode(darkMode);
+			lightThemeRadio.SetDarkMode(darkMode);
+			updatesCheckBox.SetDarkMode(darkMode);
 
 			int theme = Properties.Settings.Default.Theme;
 			if (theme == 0)

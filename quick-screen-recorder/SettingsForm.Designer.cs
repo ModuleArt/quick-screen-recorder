@@ -27,17 +27,18 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
 			this.licenseLabel = new System.Windows.Forms.Label();
-			this.darkThemeRadio = new quick_screen_recorder.CustomRadio();
-			this.lightThemeRadio = new quick_screen_recorder.CustomRadio();
-			this.systemThemeRadio = new quick_screen_recorder.CustomRadio();
-			this.updatesCheckBox = new quick_screen_recorder.CustomCheckBox();
-			this.settingsTabs = new quick_screen_recorder.CustomTabControl();
+			this.darkThemeRadio = new QuickLibrary.QlibRadioButton();
+			this.lightThemeRadio = new QuickLibrary.QlibRadioButton();
+			this.systemThemeRadio = new QuickLibrary.QlibRadioButton();
+			this.updatesCheckBox = new QuickLibrary.QlibCheckBox();
+			this.settingsTabs = new QuickLibrary.QlibTabControl();
 			this.themePage = new System.Windows.Forms.TabPage();
 			this.audioPage = new System.Windows.Forms.TabPage();
-			this.winSoundBtn = new System.Windows.Forms.Button();
-			this.mixerBtn = new System.Windows.Forms.Button();
 			this.updatesPage = new System.Windows.Forms.TabPage();
+			this.mixerBtn = new System.Windows.Forms.Button();
+			this.winSoundBtn = new System.Windows.Forms.Button();
 			this.settingsTabs.SuspendLayout();
 			this.themePage.SuspendLayout();
 			this.audioPage.SuspendLayout();
@@ -152,34 +153,6 @@
 			this.audioPage.TabIndex = 2;
 			this.audioPage.Text = "Audio";
 			// 
-			// winSoundBtn
-			// 
-			this.winSoundBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.winSoundBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-			this.winSoundBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.winSoundBtn.Location = new System.Drawing.Point(9, 41);
-			this.winSoundBtn.Margin = new System.Windows.Forms.Padding(9, 0, 9, 9);
-			this.winSoundBtn.Name = "winSoundBtn";
-			this.winSoundBtn.Size = new System.Drawing.Size(230, 23);
-			this.winSoundBtn.TabIndex = 1;
-			this.winSoundBtn.Text = "Manage audio devices";
-			this.winSoundBtn.UseVisualStyleBackColor = false;
-			this.winSoundBtn.Click += new System.EventHandler(this.winSoundBtn_Click);
-			// 
-			// mixerBtn
-			// 
-			this.mixerBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.mixerBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-			this.mixerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.mixerBtn.Location = new System.Drawing.Point(9, 9);
-			this.mixerBtn.Margin = new System.Windows.Forms.Padding(9);
-			this.mixerBtn.Name = "mixerBtn";
-			this.mixerBtn.Size = new System.Drawing.Size(230, 23);
-			this.mixerBtn.TabIndex = 0;
-			this.mixerBtn.Text = "Open volume mixer";
-			this.mixerBtn.UseVisualStyleBackColor = false;
-			this.mixerBtn.Click += new System.EventHandler(this.mixerBtn_Click);
-			// 
 			// updatesPage
 			// 
 			this.updatesPage.BackColor = System.Drawing.Color.White;
@@ -191,6 +164,40 @@
 			this.updatesPage.Size = new System.Drawing.Size(248, 121);
 			this.updatesPage.TabIndex = 1;
 			this.updatesPage.Text = "Updates";
+			// 
+			// mixerBtn
+			// 
+			this.mixerBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.mixerBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+			this.mixerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.mixerBtn.Image = ((System.Drawing.Image)(resources.GetObject("mixerBtn.Image")));
+			this.mixerBtn.Location = new System.Drawing.Point(9, 9);
+			this.mixerBtn.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
+			this.mixerBtn.Name = "mixerBtn";
+			this.mixerBtn.Size = new System.Drawing.Size(230, 40);
+			this.mixerBtn.TabIndex = 2;
+			this.mixerBtn.Text = " Open volume mixer";
+			this.mixerBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.mixerBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.mixerBtn.UseVisualStyleBackColor = false;
+			this.mixerBtn.Click += new System.EventHandler(this.mixerBtn_Click);
+			// 
+			// winSoundBtn
+			// 
+			this.winSoundBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.winSoundBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+			this.winSoundBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.winSoundBtn.Image = ((System.Drawing.Image)(resources.GetObject("winSoundBtn.Image")));
+			this.winSoundBtn.Location = new System.Drawing.Point(9, 58);
+			this.winSoundBtn.Margin = new System.Windows.Forms.Padding(0, 9, 0, 0);
+			this.winSoundBtn.Name = "winSoundBtn";
+			this.winSoundBtn.Size = new System.Drawing.Size(230, 40);
+			this.winSoundBtn.TabIndex = 3;
+			this.winSoundBtn.Text = " Manage audio devices";
+			this.winSoundBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.winSoundBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.winSoundBtn.UseVisualStyleBackColor = false;
+			this.winSoundBtn.Click += new System.EventHandler(this.winSoundBtn_Click);
 			// 
 			// SettingsForm
 			// 
@@ -220,12 +227,12 @@
 		}
 
 		#endregion
-		private CustomRadio lightThemeRadio;
-		private CustomRadio systemThemeRadio;
-		private CustomRadio darkThemeRadio;
-		private CustomCheckBox updatesCheckBox;
+		private QuickLibrary.QlibRadioButton lightThemeRadio;
+		private QuickLibrary.QlibRadioButton systemThemeRadio;
+		private QuickLibrary.QlibRadioButton darkThemeRadio;
+		private QuickLibrary.QlibCheckBox updatesCheckBox;
 		private System.Windows.Forms.Label licenseLabel;
-		private CustomTabControl settingsTabs;
+		private QuickLibrary.QlibTabControl settingsTabs;
 		private System.Windows.Forms.TabPage themePage;
 		private System.Windows.Forms.TabPage updatesPage;
 		private System.Windows.Forms.TabPage audioPage;

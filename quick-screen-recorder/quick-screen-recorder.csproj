@@ -45,6 +45,9 @@
       <HintPath>..\packages\Octokit.0.3.4\lib\net45\Octokit.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
+    <Reference Include="QuickLibrary">
+      <HintPath>..\..\QuickLibrary\QuickLibrary\bin\Release\QuickLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="SharpAvi, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpAvi.2.1.2\lib\net45\SharpAvi.dll</HintPath>
     </Reference>
@@ -73,34 +76,6 @@
     <Compile Include="AreaForm.Designer.cs">
       <DependentUpon>AreaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Converter.cs" />
-    <Compile Include="CustomButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomRadio.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomCheckBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomNumericBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomToolStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DownloadForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DownloadForm.Designer.cs">
-      <DependentUpon>DownloadForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="HotkeyManager.cs" />
     <Compile Include="Recorder.cs" />
     <Compile Include="MainForm.cs">
@@ -123,22 +98,11 @@
     <Compile Include="StopForm.Designer.cs">
       <DependentUpon>StopForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ThemeManager.cs" />
-    <Compile Include="UpdateChecker.cs" />
-    <Compile Include="UpdateForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdateForm.Designer.cs">
-      <DependentUpon>UpdateForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AreaForm.resx">
       <DependentUpon>AreaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DownloadForm.resx">
-      <DependentUpon>DownloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -158,9 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StopForm.resx">
       <DependentUpon>StopForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateForm.resx">
-      <DependentUpon>UpdateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -184,6 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="rec.ico" />
+    <None Include="resources\imgs\light\white-speaker.png" />
+    <None Include="resources\imgs\light\white-mixer.png" />
     <None Include="resources\imgs\light\white-preview.png" />
     <None Include="resources\imgs\light\white-settings.png" />
     <None Include="resources\imgs\light\white-ontop.png" />

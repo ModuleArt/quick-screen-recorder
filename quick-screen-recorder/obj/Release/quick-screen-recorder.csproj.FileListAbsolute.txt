@@ -16,6 +16,6 @@ D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\NAudi
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.StopForm.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\Octokit.dll
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.AboutForm.resources
-D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.DownloadForm.resources
 D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.SettingsForm.resources
-D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\obj\Release\quick_screen_recorder.UpdateForm.resources
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\QuickLibrary.dll
+D:\Projects\DotNet\quick-screen-recorder\quick-screen-recorder\bin\Release\QuickLibrary.pdb

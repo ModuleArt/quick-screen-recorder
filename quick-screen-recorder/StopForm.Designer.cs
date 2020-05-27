@@ -37,8 +37,8 @@
 			this.audioLabel = new System.Windows.Forms.Label();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.volumeLabel = new System.Windows.Forms.Label();
-			this.muteCheckBox = new quick_screen_recorder.CustomCheckBox();
-			this.optionsGroup = new System.Windows.Forms.GroupBox();
+			this.muteCheckBox = new QuickLibrary.QlibCheckBox();
+			this.optionsGroup = new QuickLibrary.QlibGroupBox();
 			this.optionsGroup.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -170,7 +170,7 @@
 		private System.Windows.Forms.Label audioLabel;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.Windows.Forms.Label volumeLabel;
-		private CustomCheckBox muteCheckBox;
-		private System.Windows.Forms.GroupBox optionsGroup;
+		private QuickLibrary.QlibCheckBox muteCheckBox;
+		private QuickLibrary.QlibGroupBox optionsGroup;
 	}
 }
