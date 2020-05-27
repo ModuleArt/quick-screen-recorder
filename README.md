@@ -22,10 +22,17 @@
 
 <h2 align="center">Install</h2>
 <p align="center">
-  Windows 7, 8.1, 10  | <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/tag/v1.2.1">v1.2.1</a> (2.3 MB) |  <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/download/v1.2.1/QuickScreenRecorder-Setup.msi">Download</a><br>
+  Windows 7, 8.1, 10 | <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/tag/v1.2.1">v1.2.1</a> (2.3 MB) | <a href="https://github.com/ModuleArt/quick-screen-recorder/releases/download/v1.2.1/QuickScreenRecorder-Setup.msi">Download</a><br><br>
   Uses <a href="https://dotnet.microsoft.com/download/dotnet-framework/net472">.Net 4.7.2</a><br><br>
   <img src="/docs/screenshots/main.png">
 </p>
+
+<h2 align="center">Install</h2>
+- Screen recording in .avi format<br>
+- Record screen area<br>
+- Multimonitor support<br>
+- Cursor capturing<br>
+- Ability to record system sounds or a microphone
 
 <h2 align="center">Other "Quick" apps</h2>
 <p align="center">
