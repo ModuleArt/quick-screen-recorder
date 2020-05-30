@@ -27,7 +27,7 @@
   <img src="/docs/screenshots/main.png">
 </p>
 
-<h2 align="center">Install</h2>
+<h2 align="center">Features</h2>
 - Screen recording in .avi format<br>
 - Record screen area<br>
 - Multimonitor support<br>
